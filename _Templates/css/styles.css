@@ -1,0 +1,21 @@
+.content {
+	text-align: justify;
+}
+.footer {
+	margin-top: 45px;
+	padding: 0 0 36px;
+	border-top: 1px solid #e5e5e5;
+}
+.nodisplay {
+	display: none;
+}
+.tasks-group {
+	padding: 10px 0;
+	border-top: 1px dotted #e5e5e5;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+	
+}
+@media (max-width: 768px) {
+	
+}
