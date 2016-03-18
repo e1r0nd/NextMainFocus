@@ -1,10 +1,10 @@
 # NextMainFocus
 
 ##Annotation
-Started in *November 2014*. One page app for preservation the focus on the main problems right now. Developed with MEAN stack (MongoDB, ExpressJS, AngularJS + Twitter Boorstrap, Node.js). Responsive design, mobile first approach, localization, unit testing (Jasmine), Gulp. http://nextmainfocus.herokuapp.com/
+Started in *November 2014*. One page app for preservation the focus on the main problems right now. Developed with MEAN stack (MongoDB, ExpressJS, AngularJS + Twitter Bootstrap, Node.js). Responsive design, mobile first approach, localization, unit testing (Jasmine), Gulp. http://nextmainfocus.herokuapp.com/
 
 ##Description
-I need a fast and convenient one page application to store the lists of project detailed by tasks and see on the Home page only the first priority tasks. Application might be used with all devices (PC, tablet, mobile) and supports the synchronization. Designed with a [Google Material Design](http://www.google.com/design/spec/material-design/introduction.html).
+I need a fast and convenient one page application to store the list of projects, detailed by tasks and see on the Home page only the first priority tasks. Application might be used with all devices (PC, tablet, mobile) and supports the synchronization. Designed with a [Google Material Design](http://www.google.com/design/spec/material-design/introduction.html).
 
 In the top menu tabs "Focus" (Home), "Projects", "Tasks", "Language". The home page displays the books/articles from the "Want to read".
 
