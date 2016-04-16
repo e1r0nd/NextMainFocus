@@ -14,4 +14,4 @@ See Wiki for the [Artifacts](https://github.com/e1r0nd/NextMainFocus/wiki/1-Arti
 Use typical: `npm install & bower install`
 
 ## License
-[![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
+[MIT License](LICENSE.md) 
