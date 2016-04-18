@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2016, Anatol Merezhanyi - https://github.com/e1r0nd/PersonalBookShelf
+Copyright (c) 2016, Anatol Merezhanyi - https://github.com/e1r0nd/NextMainFocus
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
