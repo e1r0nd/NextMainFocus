@@ -1,6 +1,7 @@
 {
   "excludeFiles": [
-    "client/app/app.constant.js"
+    "client/app/app.constant.js",
+    "client/app/index.html"
   ],
   "esnext": true,
   "maximumLineLength": {
@@ -15,9 +16,6 @@
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
   "disallowSpaceBeforeBinaryOperators": [","],
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
-  "disallowSpacesInAnonymousFunctionExpression": {
-    "beforeOpeningRoundBrace": true
-  },
   "disallowSpacesInFunctionDeclaration": {
     "beforeOpeningRoundBrace": true
   },

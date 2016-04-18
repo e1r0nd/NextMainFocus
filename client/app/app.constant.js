@@ -1,9 +1,13 @@
 (function(angular, undefined) {
-'use strict';
+  angular.module("nextMainFocusApp.constants", [])
 
-angular.module('nextMainFocusApp.constants', [])
-
-.constant('appConfig', {userRoles:['guest','user','admin']})
+.constant("appConfig", {
+	"userRoles": [
+		"guest",
+		"user",
+		"admin"
+	]
+})
 
 ;
 })(angular);
