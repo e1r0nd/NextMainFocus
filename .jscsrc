@@ -1,7 +1,7 @@
 {
   "excludeFiles": [
     "client/app/app.constant.js",
-    "client/app/index.html"
+    "client/index.html"
   ],
   "esnext": true,
   "maximumLineLength": {
@@ -41,6 +41,6 @@
   "requireSpacesInFunction": {
     "beforeOpeningCurlyBrace": true
   },
-  "validateLineBreaks": "LF",
+  "validateLineBreaks": "CRLF",
   "validateParameterSeparator": ", "
 }

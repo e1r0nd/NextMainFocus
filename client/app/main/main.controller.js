@@ -1,7 +1,5 @@
-'use strict';
-
 (function () {
-
+  'use strict';
   class MainController {
 
     constructor($http, $scope, socket) {
@@ -15,6 +13,7 @@
 
       $('document')
         .ready(function () { //init only after rendering
+          'use strict';
           try {
             $.material.init();
           } catch (e) {
