@@ -7,12 +7,7 @@ matrix:
   allow_failures:
     - node_js: 5.1.1
 before_script:
-  - npm install -g bower gulp-cli gulp
-  - npm install -g jshint babel-core babel-require babel-preset-es2015 mongodb-core kerberos jspm
   - gem install sass
-  - npm install phantomjs phantomjs-prebuilt
-  - npm install karma jasmine-core jasmine karma-jasmine
-  - npm install karma-phantomjs-launcher grunt-karma
   - jspm install
   - bower install
 services: mongodb

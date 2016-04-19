@@ -5,7 +5,7 @@
   ],
   "esnext": true,
   "maximumLineLength": {
-    "value": 100,
+    "value": 300,
     "allowComments": true,
     "allowRegex": true
   },
