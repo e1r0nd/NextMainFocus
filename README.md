@@ -1,4 +1,4 @@
-# NextMainFocus
+# NextMainFocus [![Build Status](https://travis-ci.org/e1r0nd/NextMainFocus.svg?branch=master)](https://travis-ci.org/e1r0nd/NextMainFocus) [![Coverage Status](https://coveralls.io/repos/github/e1r0nd/NextMainFocus/badge.svg?branch=master)](https://coveralls.io/github/e1r0nd/NextMainFocus?branch=master)
 
 ##Annotation
 Started in *November 2014*. One page app for preservation the focus on the main problems right now. Developed with MEAN stack (MongoDB, ExpressJS, AngularJS + Twitter Bootstrap, Node.js). Responsive design, mobile first approach, localization, unit testing (Jasmine, Karma), Gulp, Bower. http://nextmainfocus.herokuapp.com/
