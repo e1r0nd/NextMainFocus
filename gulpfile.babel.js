@@ -27,6 +27,7 @@ import {
 
 var plugins = gulpLoadPlugins();
 var config;
+var coveralls = require('gulp-coveralls');
 
 const clientPath = require('./bower.json')
   .appPath || 'client';
@@ -619,11 +620,23 @@ gulp.task('coverage:integration', () => {
     // Creating the reports after tests ran
 });
 
+gulp.task('coveralls', () => {
+  return gulp.src('test/coverage/**/lcov.info')
+    .pipe(coveralls({
+      // debug: true,
+      // coverageDir: 'coverage', // put the report here
+      // dryRun: true, // true - put it locally; false - push on the server
+      // force: true, // don't stop build on errors
+      // recursive: true
+    }));
+});
+
 gulp.task('mocha:coverage', cb => {
   runSequence('coverage:pre',
     'env:all',
     'env:test',
     'coverage:unit',
+    'coveralls',
     'coverage:integration',
     cb);
 });

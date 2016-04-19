@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",
+    "babel-cli": "^6.7.5",
     "babel-core": "^6.7.6",
     "babel-plugin-transform-class-properties": "^6.6.0",
     "babel-plugin-transform-runtime": "^6.6.0",
@@ -53,6 +54,7 @@
     "gulp-cache": "^0.4.2",
     "gulp-cli": "^1.2.1",
     "gulp-concat": "^2.6.0",
+    "gulp-coveralls": "^0.1.4",
     "gulp-env": "^0.4.0",
     "gulp-filter": "^4.0.0",
     "gulp-imagemin": "^2.2.1",
@@ -124,7 +126,8 @@
     "npm": "^2.14.20"
   },
   "scripts": {
-    "start": "node server",
+    
+    "start": "babel-node --presets es2015 server",
     "test": "gulp test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
