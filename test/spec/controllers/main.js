@@ -1,7 +1,6 @@
-'use strict';
-
+/*global describe, beforeEach, it, expect*/
 describe('Controller: MainCtrl', function () {
-
+  'use strict';
   // load the controller's module
   beforeEach(module('nextMainFocusApp'));
 
@@ -10,14 +9,17 @@ describe('Controller: MainCtrl', function () {
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
+    'use strict';
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
-      // place here mocked dependencies
+        // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+    'use strict';
+    expect(MainCtrl.awesomeThings.length)
+      .toBe(3);
   });
 });

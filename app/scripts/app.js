@@ -1,13 +1,10 @@
-'use strict';
-
-/**
- * @ngdoc overview
- * @name nextMainFocusApp
- * @description
- * # nextMainFocusApp
- *
- * Main module of the application.
- */
+/**************************************************
+ * NextMainFocus // app.js
+ * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - April 2016
+ * http://linkedin.com/in/merezhany/ e1r0nd.crg@gmail.com
+ * Placed in public domain.
+ **************************************************/
+/*global angular*/
 angular
   .module('nextMainFocusApp', [
     'ngAnimate',
@@ -18,6 +15,7 @@ angular
     'ngTouch'
   ])
   .config(function ($routeProvider) {
+    'use strict';
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
