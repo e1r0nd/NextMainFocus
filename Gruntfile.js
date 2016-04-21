@@ -16,12 +16,14 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    coveralls: 'grunt-karma-coveralls'
   });
 
   // Configurable paths for the application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
+    app: require('./bower.json')
+      .appPath || 'app',
     dist: 'dist'
   };
 
@@ -81,11 +83,13 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
-              connect().use(
+              connect()
+              .use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect().use(
+              connect()
+              .use(
                 '/app/styles',
                 connect.static('./app/styles')
               ),
@@ -101,7 +105,8 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect.static('test'),
-              connect().use(
+              connect()
+              .use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
@@ -174,7 +179,9 @@ module.exports = function (grunt) {
     postcss: {
       options: {
         processors: [
-          require('autoprefixer-core')({browsers: ['last 1 version']})
+          require('autoprefixer-core')({
+            browsers: ['last 1 version']
+          })
         ]
       },
       server: {
@@ -202,25 +209,25 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+        ignorePath: /\.\.\//
       },
       test: {
         devDependencies: true,
         src: '<%= karma.unit.configFile %>',
-        ignorePath:  /\.\.\//,
-        fileTypes:{
+        ignorePath: /\.\.\//,
+        fileTypes: {
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -423,6 +430,17 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    // Unit tests coverage settings
+    coveralls: {
+      options: {
+        debug: true,
+        coverageDir: 'coverage', // put the report here
+        dryRun: false, // true - put it locally; false - push on the server
+        force: true, // don't stop build on errors
+        recursive: true
+      }
     }
   });
 
@@ -453,7 +471,8 @@ module.exports = function (grunt) {
     'concurrent:test',
     'postcss',
     'connect:test',
-    'karma'
+    'karma',
+    'coveralls'
   ]);
 
   grunt.registerTask('build', [

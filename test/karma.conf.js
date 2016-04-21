@@ -3,7 +3,7 @@
 // Generated on 2016-04-21 using
 // generator-karma 1.0.0
 
-module.exports = function(config) {
+module.exports = function (config) {
   'use strict';
 
   config.set({
@@ -16,7 +16,7 @@ module.exports = function(config) {
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
-      "jasmine"
+      'jasmine'
     ],
 
     // list of files / patterns to load in the browser
@@ -36,9 +36,9 @@ module.exports = function(config) {
       'bower_components/bootstrap-material-design/dist/js/material.js',
       'bower_components/bootstrap-material-design/dist/js/ripples.js',
       // endbower
-      "app/scripts/**/*.js",
-      "test/mock/**/*.js",
-      "test/spec/**/*.js"
+      'app/scripts/**/*.js',
+      'test/mock/**/*.js',
+      'test/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -57,13 +57,14 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      "PhantomJS"
+      'PhantomJS'
     ],
 
     // Which plugins to enable
     plugins: [
-      "karma-phantomjs-launcher",
-      "karma-jasmine"
+      'karma-phantomjs-launcher',
+      'karma-jasmine',
+      'karma-coverage'
     ],
 
     // Continuous Integration mode
@@ -75,6 +76,16 @@ module.exports = function(config) {
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,
+
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      'app/scripts/controllers/*.js': ['coverage']
+    },
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    }
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {
