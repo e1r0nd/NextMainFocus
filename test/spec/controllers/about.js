@@ -1,4 +1,4 @@
-/*global describe, beforeEach, it, expect*/
+/*global describe, beforeEach, module, inject, it, expect*/
 describe('Controller: AboutCtrl', function () {
   'use strict';
   // load the controller's module
