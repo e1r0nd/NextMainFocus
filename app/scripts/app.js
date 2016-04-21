@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name personalbookshelfApp
+ * @name nextMainFocusApp
  * @description
- * # personalbookshelfApp
+ * # nextMainFocusApp
  *
  * Main module of the application.
  */
 angular
-  .module('personalbookshelfApp', [
+  .module('nextMainFocusApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

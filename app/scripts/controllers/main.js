@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name personalbookshelfApp.controller:MainCtrl
+ * @name nextMainFocusApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the personalbookshelfApp
+ * Controller of the nextMainFocusApp
  */
-angular.module('personalbookshelfApp')
+angular.module('nextMainFocusApp')
   .controller('MainCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
