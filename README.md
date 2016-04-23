@@ -1,4 +1,4 @@
-# NextMainFocus [![Build Status](https://travis-ci.org/e1r0nd/NextMainFocus.svg?branch=master)](https://travis-ci.org/e1r0nd/NextMainFocus) [![Coverage Status](https://coveralls.io/repos/github/e1r0nd/NextMainFocus/badge.svg?branch=master)](https://coveralls.io/github/e1r0nd/NextMainFocus?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/grade/2abbf41e7bc9469bad4d652f8c9b3abe)](https://www.codacy.com/app/e1r0nd-crg/NextMainFocus)
+# NextMainFocus [![Build Status](https://travis-ci.org/e1r0nd/NextMainFocus.svg?branch=master)](https://travis-ci.org/e1r0nd/NextMainFocus) [![Codacy Badge](https://api.codacy.com/project/badge/grade/2abbf41e7bc9469bad4d652f8c9b3abe)](https://www.codacy.com/app/e1r0nd-crg/NextMainFocus)
 
 ##Annotation
 Started in *November 2014*. One page app for preservation the focus on the main problems right now. Developed with MEAN stack (MongoDB, ExpressJS, AngularJS + Twitter Bootstrap, Node.js). Responsive design, mobile first approach, localization, localstorage, unit testing (Jasmine, Karma), Grunt, Bower. https://nextmainfocus.herokuapp.com/
