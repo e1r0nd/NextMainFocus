@@ -1,6 +1,7 @@
 {
   "excludeFiles": [
-    "client/app/app.constant.js"
+    "client/app/app.constant.js",
+    "client/index.html"
   ],
   "esnext": true,
   "maximumLineLength": {
