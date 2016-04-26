@@ -6,7 +6,7 @@ angular.module('nextMainFocusApp')
       templateUrl: 'components/footer/footer.html',
       restrict: 'E',
       link: function(scope, element) {
-        element.addClass('footer');
+        element.addClass('hidden-xs footer');
       }
     };
   });
