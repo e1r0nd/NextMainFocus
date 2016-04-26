@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html class="no-js" ng-app="nextMainFocusApp">
   <!--<![endif]-->
 
   <head>
@@ -11,12 +11,13 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
     <title></title>
-    <meta name="description" content="">
+    <meta name="description" content="Next Main Focus">
+    <meta name="author" content="Anatol Merezhanyi">
     <meta name="viewport" content="width=device-width">
     <!-- Material Design fonts -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <link id="page_favicon" href="favicon.ico" rel="icon" type="image/x-icon" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
     <!-- bower:css -->
@@ -31,7 +32,7 @@
     <!-- endbuild -->
   </head>
 
-  <body ng-app="nextMainFocusApp">
+  <body>
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->

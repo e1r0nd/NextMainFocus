@@ -7,6 +7,7 @@
       this.$http = $http;
       this.socket = socket;
       this.awesomeThings = [];
+      this.newThingId = $('#newThing');
 
       $scope.$on('$destroy', function() {
         'use strict';
@@ -24,11 +25,11 @@
     }
 
     addThing() {
-      if (this.newThing) {
+      if (this.newThingId.val()) {
         this.$http.post('/api/things', {
-          name: this.newThing
+          name: this.newThingId.val()
         });
-        this.newThing = '';
+        this.newThingId.val('');
       }
     }
 
