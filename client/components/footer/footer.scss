@@ -1,5 +1,10 @@
-footer.footer {
-  border-top: 1px solid #80CBC4;
-  margin-top: 70px;
-  padding: 19px 15px;
+footer {
+  &.footer {
+    border-top: 1px solid $border-color;
+    padding: 19px 0;
+  }
+}
+
+.container-footer {
+  padding: 0;
 }

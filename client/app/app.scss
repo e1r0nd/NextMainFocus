@@ -4,13 +4,33 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/vendor/assets/font
 $fa-font-path: '../bower_components/font-awesome/fonts';
 @import '../bower_components/font-awesome/scss/font-awesome';
 
+
+// Color variables
+$primary-color: #9c27b0; //Purple 500
+$secondary-color: #ba68c8; //Purple 300
+$background-color: #f3e5f5; //Purple 50
+$accent-color: #f50057; //Pink A400
+$text-color: #000;
+$text-color-inverse: #fff;
+$box-shadow-color-primary: rgba(0, 0, 0, .14);
+$box-shadow-color-secondary: rgba(0, 0, 0, .28);
+$border-color: $box-shadow-color-primary;
+
 // App-wide Styles
 
 .browserupgrade {
-  background: #ccc;
-  color: #000;
+  background: $background-color;
+  color: $text-color;
   margin: .2em 0;
   padding: .2em 0;
+}
+
+body {
+  background-color: $background-color;
+}
+
+a {
+  color: $secondary-color;
 }
 
 .nodisplay {
@@ -37,5 +57,6 @@ $fa-font-path: '../bower_components/font-awesome/fonts';
 @import 'main/main.scss';
 @import '../components/footer/footer.scss';
 @import '../components/modal/modal.scss';
+@import '../components/navbar/navbar.scss';
 @import '../components/oauth-buttons/oauth-buttons.scss';
 /* endinject */

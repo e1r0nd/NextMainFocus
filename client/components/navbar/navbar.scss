@@ -1,0 +1,31 @@
+.navbar {
+  &.navbar-inverse {
+    & .navbar-nav > .active > {
+      a {
+        &:focus,
+        &:hover {
+          background-color: $secondary-color;
+        }
+
+        background-color: $secondary-color;
+      }
+    }
+
+    & .navbar-nav > li > a {
+      color: $text-color-inverse;
+    }
+
+    background-color: $primary-color;
+    border: 0;
+    box-shadow: 0 8px 8px $box-shadow-color-primary, 0 6px 6px $box-shadow-color-secondary;
+    color: $text-color-inverse;
+  }
+
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.container-header {
+  padding: 0;
+}
