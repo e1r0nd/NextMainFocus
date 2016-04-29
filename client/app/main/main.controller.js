@@ -10,7 +10,6 @@
       this.newThingId = $('#newThing');
 
       $scope.$on('$destroy', function() {
-        'use strict';
         socket.unsyncUpdates('thing');
       });
       $.material.init();
