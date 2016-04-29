@@ -21,6 +21,10 @@
     color: $text-color-inverse;
   }
 
+  .dropdown-menu {
+    margin: 0;
+  }
+
   left: 0;
   top: 0;
   width: 100%;
@@ -28,4 +32,28 @@
 
 .container-header {
   padding: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav.navbar-right {
+    &:last-child {
+      margin-right: 0;
+  }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container > .navbar-header,
+  .navbar-nav {
+    display: inline-block;;
+    margin: 0;
+  }
+
+  .navbar-right {
+    float: right;
+  }
+
+  .nav > li {
+    display: inline-block;
+  }
 }

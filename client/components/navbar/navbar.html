@@ -1,14 +1,21 @@
 <div class="navbar navbar-inverse navbar-static-top fixed" ng-controller="NavbarController" role="navigation">
   <div class="container container-header">
-    <div class="navbar-header">
-      <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
-          <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-        <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
-      </ul>
-    </div>
+    <!-- <div class="navbar-header"> -->
+    <ul class="nav navbar-nav">
+      <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
+        <a ng-href="{{item.link}}">
+          <i class="material-icons">{{item.icon}}</i> <span class="hidden-xs">{{item.title}}</span>
+        </a>
+      </li>
+      <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
+    </ul>
+    <!-- </div> -->
     <ul class="nav navbar-nav navbar-right" uib-dropdown is-open="status.isopen">
+      <li>
+        <a href="javascript:void(0)" class="">
+          <i class="material-icons">search</i>
+        </a>
+      </li>
       <li>
         <a href="javascript:void(0)" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled">
           <i class="material-icons">more_vert</i>
