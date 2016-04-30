@@ -1,13 +1,17 @@
-(function() {
-  'use strict';
+'use strict';
 
+(function() {
   class MainController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, Modal) {
       this.$http = $http;
       this.socket = socket;
       this.awesomeThings = [];
       this.newThingId = $('#newThing');
+
+      this.deleteThing = Modal.confirm.delete(thing => {
+        this.$http.delete('/api/things/' + thing._id);
+      });
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
@@ -32,9 +36,6 @@
       }
     }
 
-    deleteThing(thing) {
-      this.$http.delete('/api/things/' + thing._id);
-    }
   }
 
   angular.module('nextMainFocusApp')
