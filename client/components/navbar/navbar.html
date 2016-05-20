@@ -4,7 +4,7 @@
     <ul class="nav navbar-nav">
       <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
         <a ng-href="{{item.link}}">
-          <i class="material-icons">{{item.icon}}</i> <span class="hidden-xs">{{item.title}}</span>
+          <i class="material-icons">{{item.icon}}</i> <span class="hidden-xs" translate>{{item.title}}</span>
         </a>
       </li>
       <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>

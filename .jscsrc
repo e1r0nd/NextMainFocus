@@ -3,7 +3,6 @@
     "client/app/app.constant.js",
     "client/index.html"
   ],
-  "esnext": true,
   "maximumLineLength": {
     "value": 100,
     "allowComments": true,

@@ -3,17 +3,17 @@
 class NavbarController {
   //start-non-standard
   menu = [{
-      'title': 'focus',
+      'title': 'MENU_FOCUS',
       'link': '/',
       'icon': 'filter_center_focus'
   },
     {
-      'title': 'projects',
+      'title': 'MENU_PROJECTS',
       'link': '/projects',
       'icon': 'folder_open'
   },
     {
-      'title': 'tasks',
+      'title': 'MENU_TASKS',
       'link': '/tasks',
       'icon': 'list'
   }];
