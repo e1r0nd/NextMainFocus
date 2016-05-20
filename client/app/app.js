@@ -1,3 +1,9 @@
+/**************************************************
+ * Next Main Focus // app.js
+ * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - May 2016
+ * http://linkedin.com/in/merezhany/ e1r0nd.crg@gmail.com
+ * Placed in public domain.
+ **************************************************/
 'use strict';
 
 angular.module('nextMainFocusApp', [
