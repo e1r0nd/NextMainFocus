@@ -55,6 +55,12 @@ a {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .tooltip {
+    display: none !important;
+  }
+}
+
 // Component styles are injected through grunt
 /* inject:scss */
 @import 'admin/admin.scss';

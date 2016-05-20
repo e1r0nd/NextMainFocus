@@ -24,15 +24,17 @@ angular.module('nextMainFocusApp', [
   .config(['$translateProvider', function($translateProvider) {
     'use strict';
     $translateProvider.translations('en', {
-      'MENU_FOCUS': 'focus1',
+      'MENU_FOCUS': 'focus',
       'MENU_PROJECTS': 'projects',
-      'MENU_TASKS': 'tasks'
+      'MENU_TASKS': 'tasks',
+      'REMOVE': 'remove'
     });
 
     $translateProvider.translations('ru', {
       'MENU_FOCUS': 'фокус',
       'MENU_PROJECTS': 'проекты',
-      'MENU_TASKS': 'задачи'
+      'MENU_TASKS': 'задачи',
+      'REMOVE': 'удалить'
     });
 
     $translateProvider.preferredLanguage('en');

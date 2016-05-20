@@ -23,13 +23,15 @@
       </li>
       <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}" role="menuitem"><a href="/signup">Sign up</a></li>
-        <li class="divider"></li>
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}" role="menuitem"><a href="/login">Login</a></li>
         <li ng-show="nav.isLoggedIn()" role="menuitem">
           <p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p>
         </li>
         <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}" role="menuitem"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
         <li ng-show="nav.isLoggedIn()" role="menuitem"><a href="/logout">Logout</a></li>
+        <li class="divider"></li>
+        <li><a ng-click="nav.changeLanguage('en')" ng-class="{selected: nav.language == 'en'}" href="javascript:void(0)">English</a></li>
+        <li><a ng-click="nav.changeLanguage('ru')" ng-class="{selected: nav.language == 'ru'}" href="javascript:void(0)">Русский</a></li>
       </ul>
     </ul>
   </div>

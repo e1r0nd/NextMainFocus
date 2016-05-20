@@ -21,15 +21,29 @@ class NavbarController {
   isCollapsed = true;
   //end-non-standard
 
-  constructor($location, Auth) {
+  constructor($location, Auth, $translate) {
     this.$location = $location;
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
+    this.$translate = $translate;
+    this.language = $translate.use();
   }
 
   isActive(route) {
     return route === this.$location.path();
+  }
+
+  changeLanguage(langKey) {
+    // init translations
+    try {
+      this.$translate.use(langKey);
+      this.language = this.$translate.use();
+    } catch (e) {
+      if (window.console && window.console.error) {
+        console.error(e, e.stack);
+      }
+    }
   }
 }
 
