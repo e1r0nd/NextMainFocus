@@ -8,7 +8,7 @@
         <div class="list-itm-elem cursor" uib-tooltip="{{thing.info}}">
           {{thing.name}}
         </div>
-        <div class="btn-group-sm list-remove-btn cursor" uib-tooltip="{{'REMOVE' | translate}}" tooltip-placement="right" tooltip-trigger="mouseenter">
+        <div class="btn-group-sm list-remove-btn cursor" uib-tooltip="{{'REMOVE' | translate}}" tooltip-placement="right">
           <span class=" btn btn-default btn-fab " ng-click="$ctrl.deleteThing(thing) " data-toggle="modal" data-target="#confirmRemove">
             <i class="material-icons">close</i>
           </span>
