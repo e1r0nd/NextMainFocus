@@ -4,7 +4,7 @@
     "client/index.html"
   ],
   "maximumLineLength": {
-    "value": 100,
+    "value": 130,
     "allowComments": true,
     "allowRegex": true
   },
