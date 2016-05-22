@@ -791,10 +791,12 @@ module.exports = function(grunt) {
         ]);
       }
 
-    } else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+    } else {
+      grunt.task.run([
+        'test:server',
+        'test:client'
+      ]);
+    }
   });
 
   grunt.registerTask('build', [
