@@ -1,25 +1,40 @@
-.modal-primary,
+.modal-danger,
 .modal-info,
+.modal-primary,
 .modal-success,
-.modal-warning,
-.modal-danger {
+.modal-warning {
   .modal-header {
-    color: #fff;
     border-radius: 5px 5px 0 0;
+    color: $text-color-inverse;
   }
 }
-.modal-primary .modal-header {
-  background: $brand-primary;
+
+.modal-primary {
+  & .modal-header {
+    background: $brand-primary;
+  }
 }
-.modal-info .modal-header {
-  background: $brand-info;
+
+.modal-info {
+  & .modal-header {
+    background: $brand-info;
+  }
 }
-.modal-success .modal-header {
-  background: $brand-success;
+
+.modal-success {
+  & .modal-header {
+    background: $brand-success;
+  }
 }
-.modal-warning .modal-header {
-  background: $brand-warning;
+
+.modal-warning {
+  & .modal-header {
+    background: $brand-warning;
+  }
 }
-.modal-danger .modal-header {
-  background: $brand-danger;
+
+.modal-danger {
+  & .modal-header {
+    background: $brand-danger;
+  }
 }

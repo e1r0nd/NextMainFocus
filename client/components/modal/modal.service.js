@@ -39,14 +39,13 @@ angular.module('nextMainFocusApp')
            */
           return function() {
             var args = Array.prototype.slice.call(arguments),
-              name = args.shift(),
+              name = args[0],
               deleteModal;
-            console.log(args.shift());
             deleteModal = openModal({
               modal: {
-                dismissable: true,
+                dismissable: false,
                 title: 'Confirm Delete',
-                html: '<p>Are you sure you want to delete <strong>' + name.name + '</strong> ?</p>',
+                html: '<p>Are you sure you want to delete <strong>' + name.title + '</strong> ?</p>',
                 buttons: [{
                   classes: 'btn-default',
                   text: 'Delete',

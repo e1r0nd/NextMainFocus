@@ -35,8 +35,8 @@ describe('Thing API:', function() {
       request(app)
         .post('/api/things')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          title: 'New Thing',
+          type: 'This is the brand new thing!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +50,8 @@ describe('Thing API:', function() {
     });
 
     it('should respond with the newly created thing', function() {
-      newThing.name.should.equal('New Thing');
-      newThing.info.should.equal('This is the brand new thing!!!');
+      newThing.title.should.equal('New Thing');
+      newThing.type.should.equal('This is the brand new thing!!!');
     });
 
   });
@@ -78,8 +78,8 @@ describe('Thing API:', function() {
     });
 
     it('should respond with the requested thing', function() {
-      thing.name.should.equal('New Thing');
-      thing.info.should.equal('This is the brand new thing!!!');
+      thing.title.should.equal('New Thing');
+      thing.type.should.equal('This is the brand new thing!!!');
     });
 
   });
@@ -91,8 +91,8 @@ describe('Thing API:', function() {
       request(app)
         .put('/api/things/' + newThing._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          title: 'Updated Thing',
+          type: 'This is the updated thing!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -110,8 +110,8 @@ describe('Thing API:', function() {
     });
 
     it('should respond with the updated thing', function() {
-      updatedThing.name.should.equal('Updated Thing');
-      updatedThing.info.should.equal('This is the updated thing!!!');
+      updatedThing.title.should.equal('Updated Thing');
+      updatedThing.type.should.equal('This is the updated thing!!!');
     });
 
   });

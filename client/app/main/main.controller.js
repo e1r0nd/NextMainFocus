@@ -6,11 +6,11 @@
     constructor($http, $scope, socket, Modal) {
       this.$http = $http;
       this.socket = socket;
-      this.awesomeThings = [];
+      this.Items = [];
       this.newThingId = $('#newThing');
 
-      this.deleteThing = Modal.confirm.delete(thing => {
-        this.$http.delete('/api/things/' + thing._id);
+      this.deleteThing = Modal.confirm.delete(item => {
+        this.$http.delete('/api/things/' + item._id);
       });
 
       $scope.$on('$destroy', function() {
@@ -22,15 +22,15 @@
     $onInit() {
       this.$http.get('/api/things')
         .then(response => {
-          this.awesomeThings = response.data;
-          this.socket.syncUpdates('thing', this.awesomeThings);
+          this.Items = response.data;
+          this.socket.syncUpdates('thing', this.Items);
         });
     }
 
     addThing() {
       if (this.newThingId.val()) {
         this.$http.post('/api/things', {
-          name: this.newThingId.val()
+          title: this.newThingId.val()
         });
         this.newThingId.val('');
       }
