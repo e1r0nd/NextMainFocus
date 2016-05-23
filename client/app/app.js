@@ -33,14 +33,22 @@ angular.module('nextMainFocusApp', [
       'MENU_FOCUS': 'focus',
       'MENU_PROJECTS': 'projects',
       'MENU_TASKS': 'tasks',
-      'REMOVE': 'remove'
+      'REMOVE': 'remove',
+      'LIST_EMPTY': 'This list is empty',
+      'ADD_NEW': 'New',
+      'ADD_NEW_PROJECT': 'project',
+      'ADD_NEW_TASK': 'task'
     });
 
     $translateProvider.translations('ru', {
       'MENU_FOCUS': 'фокус',
       'MENU_PROJECTS': 'проекты',
       'MENU_TASKS': 'задачи',
-      'REMOVE': 'удалить'
+      'REMOVE': 'удалить',
+      'LIST_EMPTY': 'Этот список пуст',
+      'ADD_NEW': 'Добавить',
+      'ADD_NEW_PROJECT': 'проект',
+      'ADD_NEW_TASK': 'задачу'
     });
 
     $translateProvider.preferredLanguage('en');

@@ -18,13 +18,32 @@
   </div>
 </div>
 
+<div class="add-btn-wrapper">
+  <div id="addBtn" class="add-btn">
+    <span class="btn btn-danger btn-fab btn-link" ng-click="newBook()" data-toggle="modal" data-target="#addNew" uib-tooltip="{{'ADD_NEW' | translate}}" tooltip-placement="left">
+      <span class="add-btn-i"><i class="material-icons">add circle</i></span>
+    </span>
+  </div>
+  <div class="btn-group-sm hidden-sm hidden-xs">
+    <div class="btn-link-wrapper">
+      <span class="btn btn-success btn-fab btn-link-project" ng-click="newBook()" data-toggle="modal" data-target="#addNew" uib-tooltip="{{'ADD_NEW_PROJECT' | translate}}" tooltip-placement="left">
+        <span class="add-btn-mini"><i class="material-icons">folder</i></span>
+      </span>
+    </div>
+    <div class="btn-link-wrapper">
+      <span class="btn btn-info btn-fab btn-link-task" ng-click="newBook(true)" data-toggle="modal" data-target="#addNew" uib-tooltip="{{'ADD_NEW_TASK' | translate}}" tooltip-placement="left">
+        <span class="add-btn-mini"><i class="material-icons">description</i></span>
+      </span>
+    </div>
+  </div>
+</div>
+
 <form class="thing-form ">
   <label>Syncs in realtime across clients</label>
   <p class="input-group ">
     <input type="text " class="form-control " placeholder="Add a new thing here. " id="newThing" ng-model="$ctrl.newThing ">
     <span class="input-group-btn ">
-        <button type="submit " class="btn btn-primary " ng-click="$ctrl.addThing() ">Add New</button>
+        <button type="submit " class="btn btn-primary " ng-click="$ctrl.addThing()">Add New</button>
       </span>
   </p>
 </form>
-</div>

@@ -1,3 +1,10 @@
+/**************************************************
+ * Next Main Focus // main.controller.js
+ * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - May 2016
+ * http://linkedin.com/in/merezhany/ e1r0nd.crg@gmail.com
+ * Placed in public domain.
+ **************************************************/
+/*global $, angular, console*/
 'use strict';
 
 (function() {

@@ -48,3 +48,106 @@ body {
   font-size: 12px;
   padding: 5px 20px;
 }
+
+// add button
+.add-btn-wrapper {
+  &:hover {
+    height: 170px;
+  }
+
+  bottom: 10%;
+  height: 56px;
+  position: fixed;
+  right: 10%;
+  width: 56px;
+}
+
+.add-btn {
+  &:hover {
+    & .add-btn-i {
+      transform: rotate3d(0, 0, 1, 135deg);
+      transition: transform .4s;
+    }
+  }
+  border-radius: 50%;
+  bottom: 0;
+  box-shadow: 0 8px 8px $box-shadow-color-primary, 0 6px 6px $box-shadow-color-secondary;
+  height: 56px;
+  position: absolute;
+  width: 56px;
+}
+
+.add-btn-i,
+.add-btn-mini {
+  display: block;
+  height: 56px;
+  position: relative;
+  width: 56px;
+}
+
+.add-btn-mini {
+  position: static;
+}
+
+.dtp {
+  & .dtp-buttons {
+    padding: 0 5px 20px 0;
+  }
+}
+
+.togglebutton-block {
+  display: inline;
+  margin-right: 140px;
+}
+
+.togglebutton-btn {
+  margin: 0;
+  padding: 8px 16px;
+}
+
+// Responsive: Portrait tablets and up
+
+@media screen and (min-width: 768px) {
+  .btn-group-sm {
+    & .btn-link-project,
+    & .btn-link-task {
+      bottom: 72px;
+      opacity: 0;
+      position: absolute !important;
+      right: 10px;
+      transform: scale(0);
+      transition: all 120ms ease-in;
+    }
+
+    & .btn-link-task {
+      bottom: 124px;
+    }
+  }
+
+  .add-btn-wrapper {
+    &:hover {
+      & .btn-link-project,
+      & .btn-link-task {
+        opacity: 1;
+        transform: scale(1);
+        transition: all 120ms ease-in;
+      }
+
+      & .btn-link-task {
+        transition-delay: 50ms;
+      }
+    }
+  }
+
+  .btn {
+    &.btn-fab {
+      &.btn-info:hover {
+        background-color: $info-color !important;
+      }
+
+      &.btn-success:hover {
+        background-color: $success-color !important;
+      }
+    }
+  }
+}
