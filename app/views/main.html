@@ -1,0 +1,177 @@
+<ul class="well" ng-if="filters == '5' && !filteredItems.length">
+  <p class="list-itm-elem" ng-show="!filteredItems.length" translate>BOOKS_EMPTY</p>
+</ul>
+<ul class="well" ng-sortable="sortableBookList" ng-if="filters == '5' && filteredItems.length">
+  <li class="book-group" ng-repeat="book in filteredItems">
+    <div class="book-itm-view lead">
+      <div class="book-itm-tag"><i class="material-icons">reorder</i></div>
+      <div class="list-itm-elem cursor" ng-click="editBook(book, book.index)" data-toggle="modal" data-target="#addNew">
+        <span class="book-title">&laquo;{{book.title}}&raquo;.</span>
+        <span class="book-author" ng-show="book.type=='book'">{{book.author}}</span>
+        <span class="book-author book-author-lnk" ng-show="book.type=='article'">
+          <a href="{{book.author}}" target="_blank">
+            <span translate>EXTERNAL_LINK</span> <i class="material-icons">launch</i></a>
+        </span>
+        <span class="book-mark text-danger">
+          <i class="material-icons book-mark-itm">whatshot</i>
+        </span>
+        <span class="label label-default" ng-show="book.tag=='fiction'" translate>TAG_FICTION</span>
+        <span class="label label-info" ng-show="book.tag=='education'" translate>TAG_EDUCATION</span>
+        <span class="label label-success" ng-show="book.tag=='entertainment'" translate>TAG_ENTERTAINMENT</span>
+        <p class="text-muted" ng-if="book.date">{{book.date | asDate | date: 'dd.MM.yyyy'}}</p>
+        <p class="text-muted" ng-if="!book.date" translate>DATE_UNDEFINED</p>
+      </div>
+      <div class="btn-group-sm book-remove-btn cursor">
+        <span class="btn btn-default btn-fab" ng-click="removeBookDialog(book.index)" data-toggle="modal" data-target="#confirmRemove"><i class="material-icons">close</i></span>
+        <div class="tooltip right tooltip-link tooltip-link-remove" role="tooltip">
+          <div class="tooltip-inner">Remove</div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+<ul class="well" ng-if="filters != '5'">
+  <p class="list-itm-elem" ng-show="!filteredItems.length" translate>BOOKS_EMPTY</p>
+  <li class="book-group" ng-repeat="book in filteredItems | filter: global.search">
+    <div class="book-itm-view lead">
+      <div class="list-itm-elem cursor" ng-click="editBook(book, book.index)" data-toggle="modal" data-target="#addNew">
+        <span class="book-title">&laquo;{{book.title}}&raquo;.</span>
+        <span class="book-author" ng-show="book.type=='book'">{{book.author}}</span>
+        <span class="book-author book-author-lnk" ng-show="book.type=='article'">
+          <a href="{{book.author}}" target="_blank">
+            <span translate>EXTERNAL_LINK</span> <i class="material-icons">launch</i></a>
+        </span>
+        <span class="book-mark text-danger" ng-switch on="book.mark">
+          <i class="material-icons book-mark-itm" ng-switch-when="0">book</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="1">star_border</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="2">star_half</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="3">star</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="4">favorite</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="5">whatshot</i>
+          <i class="material-icons book-mark-itm" ng-switch-when="6">block</i>
+        </span>
+        <span class="label label-default" ng-show="book.tag=='fiction'" translate>TAG_FICTION</span>
+        <span class="label label-info" ng-show="book.tag=='education'" translate>TAG_EDUCATION</span>
+        <span class="label label-success" ng-show="book.tag=='entertainment'" translate>TAG_ENTERTAINMENT</span>
+        <p class="text-muted" ng-if="book.date">{{book.date | asDate | date: 'dd.MM.yyyy'}}</p>
+        <p class="text-muted" ng-if="!book.date" translate>DATE_UNDEFINED</p>
+      </div>
+      <div class="btn-group-sm book-remove-btn cursor">
+        <span class="btn btn-default btn-fab" ng-click="removeBookDialog(book.index)" data-toggle="modal" data-target="#confirmRemove"><i class="material-icons">close</i></span>
+        <div class="tooltip right tooltip-link tooltip-link-remove" role="tooltip">
+          <div class="tooltip-inner">Remove</div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+<div class="add-btn-wrapper">
+  <div id="addBtn" class="add-btn">
+    <span class="btn btn-danger btn-fab btn-link" ng-click="newBook()" data-toggle="modal" data-target="#addNew">
+      <span class="add-btn-i"><i class="material-icons">add circle</i></span>
+    </span>
+    <div class="tooltip left tooltip-link" role="tooltip">
+      <div class="tooltip-inner">Add new</div>
+    </div>
+  </div>
+  <div class="btn-group-sm hidden-sm hidden-xs">
+    <div class="btn-link-wrapper">
+      <span class="btn btn-success btn-fab btn-link-book" ng-click="newBook()" data-toggle="modal" data-target="#addNew">
+        <span class="add-btn-mini"><i class="material-icons">book</i></span>
+      </span>
+      <div class="tooltip left tooltip-link tooltip-link-book" role="tooltip">
+        <div class="tooltip-inner">Add new book</div>
+      </div>
+    </div>
+    <div class="btn-link-wrapper">
+      <span class="btn btn-info btn-fab btn-link-article" ng-click="newBook(true)" data-toggle="modal" data-target="#addNew">
+        <span class="add-btn-mini"><i class="material-icons">description</i></span>
+      </span>
+      <div class="tooltip left tooltip-link tooltip-link-article" role="tooltip">
+        <div class="tooltip-inner">Add new article</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addNew" role="dialog" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form ng-submit="saveEdits(book, 'submit')">
+          <div id="bookTitleDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}">
+            <label class="control-label" for="bookTitle" translate>BOOK_TITLE</label>
+            <input class="form-control" id="bookTitle" type="text" ng-model="book.title" ng-trim="true" ng-maxlength="128" maxlength="128" required>
+            <p class="help-block" id="bookTitleHelper" translate>BOOK_NOT_EMPTY</p>
+          </div>
+          <div id="bookAuthorDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}">
+            <label class="control-label" for="bookAuthor" ng-show="book.type=='book'" translate>BOOK_AUTHOR</label>
+            <label class="control-label" for="bookAuthor" ng-show="book.type=='article'" translate>BOOK_URL</label>
+            <input class="form-control" id="bookAuthor" type="text" ng-model="book.author" ng-trim="true" ng-maxlength="255" maxlength="255" required>
+            <p class="help-block" translate>BOOK_NOT_EMPTY</p>
+          </div>
+          <div id="bookTagDiv" class="form-group label-floating">
+            <label class="control-label" for="bookTag" translate>BOOK_TAG</label>
+            <select id="bookTag" class="form-control" ng-model="book.tag" ng-trim="true">
+              <option value="" selected></option>
+              <option value="fiction" translate>TAG_FICTION</option>
+              <option value="education" translate>TAG_EDUCATION</option>
+              <option value="entertainment" translate>TAG_ENTERTAINMENT</option>
+            </select>
+          </div>
+          <div id="bookMarkDiv" class="form-group label-floating">
+            <label class="control-label" for="bookMark" translate>BOOK_MARK</label>
+            <select id="bookMark" class="form-control" ng-model="book.mark" ng-trim="true" required>
+              <option value="0" selected translate>BOOK_READING_NOW</option>
+              <option value="1" translate>BOOK_1_STAR</option>
+              <option value="2" translate>BOOK_2_STARS</option>
+              <option value="3" translate>BOOK_3_STARS</option>
+              <option value="4" translate>BOOK_FAVORITE</option>
+              <option value="5" translate>BOOK_WANT_TO_READ</option>
+              <option value="6" translate>BOOK_DONT_WANT_TO_READ</option>
+            </select>
+            <p class="help-block" translate>BOOK_NOT_EMPTY</p>
+          </div>
+          <div id="bookDateDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}">
+            <label class="control-label" for="bookDate" translate>BOOK_DATE</label>
+            <input class="form-control" id="bookDate" type="text" ng-model="book.date" ng-trim="true">
+            <i class="material-icons cursor book-date-btn" ng-click="clearDateInp()">close</i>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="togglebutton togglebutton-block">
+          <label>
+            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': book.type!='book'}">Book</span>
+            <input ng-model="book.type" type="checkbox" ng-true-value="'article'" ng-false-value="'book'">
+            <span id="bookToggler" class="toggle"></span>
+            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': book.type!='article'}">Article</span>
+          </label>
+        </div>
+        <button type="button" class="btn btn-default" ng-click="revertBook(book.index)" data-dismiss="modal" translate>BOOK_CLOSE</button>
+        <button type="button" class="btn btn-primary" ng-click="saveEdits(book, book.index)" translate>BOOK_SAVE_CHANGES</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="confirmRemove" role="dialog" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form ng-submit="removeBook(book.index)">
+          <p class="" id="confirmTitle" translate>CONFIRM_QUESTION</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" translate>BOOK_CLOSE</button>
+        <button type="button" class="btn btn-primary" ng-click="removeBook(index)" translate>BOOK_REMOVE</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
