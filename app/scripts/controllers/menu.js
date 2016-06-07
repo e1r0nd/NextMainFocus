@@ -55,29 +55,19 @@ angular.module('nextmainfocusApp')
 
     $scope.topmenu = [
       {
-        name: 'MENU_WISHLIST',
+        name: 'MENU_FOCUS',
         value: '5',
-        icon: 'list'
+        icon: 'screenshot'
             },
       {
-        name: 'MENU_READ',
+        name: 'MENU_PROJECTS',
         value: '0',
-        icon: 'book'
+        icon: 'folder-close'
             },
       {
-        name: 'MENU_FAVORITES',
+        name: 'MENU_TASKS',
         value: '4',
-        icon: 'star'
-            },
-      {
-        name: 'MENU_DONE',
-        value: '1',
-        icon: 'ok'
-            },
-      {
-        name: 'MENU_BLAMELIST',
-        value: '6',
-        icon: 'ban-circle'
+        icon: 'list'
             }
     ];
 
