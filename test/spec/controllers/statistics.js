@@ -2,7 +2,7 @@
 describe('Controller: StatisticsCtrl', function () {
   'use strict';
   // load the controller's module
-  beforeEach(module('personalbookshelfApp'));
+  beforeEach(module('nextmainfocusApp'));
 
   var StatisticsCtrl,
     scope,

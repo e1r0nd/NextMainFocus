@@ -2,7 +2,7 @@
 describe('Controller: MenuCtrl', function () {
   'use strict';
   // load the controller's module
-  beforeEach(module('personalbookshelfApp'));
+  beforeEach(module('nextmainfocusApp'));
 
   var MenuCtrl,
     scope,
