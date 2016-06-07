@@ -1,11 +1,11 @@
 /**************************************************
- * Personal Bookshelf // menu.js
- * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - January 2016
+ * Next Main Focus // menu.js
+ * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - June 2016
  * http://linkedin.com/in/merezhany/ e1r0nd.crg@gmail.com
  * Placed in public domain.
  **************************************************/
 /*global $, angular, console*/
-angular.module('personalbookshelfApp')
+angular.module('nextmainfocusApp')
   .controller('MenuCtrl', function ($scope, $rootScope, $filter, localStorageService, $translate, $routeParams) {
     'use strict';
     var booksInStore = localStorageService.get('books'),

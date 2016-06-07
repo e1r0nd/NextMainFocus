@@ -47,6 +47,9 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "http-server": "^0.8.5"
+    "http-server": "^0.8.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "phantomjs-prebuilt": "^2.1.7"
   }
 }

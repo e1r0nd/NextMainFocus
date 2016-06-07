@@ -1,11 +1,11 @@
 /**************************************************
- * Personal Bookshelf // main.js
- * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - January 2016
+ * Next Main Focus // main.js
+ * coded by Anatol Marezhanyi aka e1r0nd//[CRG] - June 2016
  * http://linkedin.com/in/merezhany/ e1r0nd.crg@gmail.com
  * Placed in public domain.
  **************************************************/
 /*global $, angular, console*/
-angular.module('personalbookshelfApp')
+angular.module('nextmainfocusApp')
   .controller('MainCtrl', function ($scope, $rootScope, $filter, $translate, localStorageService) {
     'use strict';
 
