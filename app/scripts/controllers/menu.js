@@ -57,12 +57,12 @@ angular.module('nextmainfocusApp')
       {
         name: 'MENU_FOCUS',
         value: '5',
-        icon: 'screenshot'
+        icon: 'all_out'
             },
       {
         name: 'MENU_PROJECTS',
         value: '0',
-        icon: 'folder-close'
+        icon: 'folder'
             },
       {
         name: 'MENU_TASKS',

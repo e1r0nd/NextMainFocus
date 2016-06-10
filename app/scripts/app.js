@@ -87,7 +87,7 @@ angular
     });
 
     $translateProvider.translations('ru', {
-      'APP_TITLE': 'Следующая цель',
+      'APP_TITLE': 'Основной фокус',
       'MENU_PROJECTS': 'Проекты',
       'MENU_TASKS': 'Задачи',
       'MENU_FOCUS': 'Фокус',
