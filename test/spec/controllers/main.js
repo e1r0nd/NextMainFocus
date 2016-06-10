@@ -17,27 +17,27 @@ describe('Controller: MainCtrl', function () {
       this.focus = function () {};
       this.addClass = function () {};
     }
-    ['Title', 'Author', 'Mark', 'date', 'confirmRemove', 'bookTitleHelper', 'addNew'].forEach(function (itm, i) {
-      scope[((i < 4) ? 'book' : '') + itm] = new HtmlFactory();
+    ['Title', 'Author', 'Mark', 'date', 'confirmRemove', 'itemTitleHelper', 'addNew'].forEach(function (itm, i) {
+      scope[((i < 4) ? 'item' : '') + itm] = new HtmlFactory();
       if (i < 4) {
-        scope['book' + itm + 'Div'] = new HtmlFactory();
+        scope['item' + itm + 'Div'] = new HtmlFactory();
       }
     });
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope,
-      updateBooks: function () {}
+      updateItems: function () {}
     });
   }));
 
-  it('removeBookDialog: store a book\'s index before the removing', function () {
-    scope.removeBookDialog('123456789');
+  it('removeItemDialog: store a item\'s index before the removing', function () {
+    scope.removeItemDialog('123456789');
     expect(scope.index)
       .toBe('123456789');
   });
 
-  it('removeBook: remove the book by the stored index', function () {
-    scope.books = [
+  it('removeItem: remove the item by the stored index', function () {
+    scope.items = [
       {
         index: '1'
       },
@@ -45,40 +45,40 @@ describe('Controller: MainCtrl', function () {
         index: '123456789'
       }
     ];
-    scope.removeBook('123456789');
-    expect(scope.books.length)
+    scope.removeItem('123456789');
+    expect(scope.items.length)
       .toBe(1);
   });
 
-  it('addBook: add a book to the list, should be 1 item', function () {
-    scope.books = [];
-    scope.book = {
+  it('addItem: add a item to the list, should be 1 item', function () {
+    scope.items = [];
+    scope.item = {
       title: 'Test 1'
     };
-    scope.addBook();
-    expect(scope.books.length)
+    scope.addItem();
+    expect(scope.items.length)
       .toBe(1);
   });
 
-  it('newBook: create a new book', function () {
-    scope.newBook(); // test a book
+  it('newItem: create a new item', function () {
+    scope.newItem(); // test a item
     expect(scope.isEmpty)
       .toBe(true);
-    expect(scope.book.mark)
+    expect(scope.item.mark)
       .toBe('5');
-    expect(scope.book.type)
-      .toBe('book');
-    scope.newBook(true); // test an article
+    expect(scope.item.type)
+      .toBe('item');
+    scope.newItem(true); // test an article
     expect(scope.isEmpty)
       .toBe(true);
-    expect(scope.book.mark)
+    expect(scope.item.mark)
       .toBe('5');
-    expect(scope.book.type)
+    expect(scope.item.type)
       .toBe('article');
   });
 
-  it('revertBook: revert changes', function () {
-    scope.books = [
+  it('revertItem: revert changes', function () {
+    scope.items = [
       {
         index: '1'
       },
@@ -87,38 +87,38 @@ describe('Controller: MainCtrl', function () {
         index: '123456789'
       }
     ];
-    scope.originalBook = {
+    scope.originalItem = {
       title: 'abc',
       index: '123456789'
     };
     scope.isEmpty = false;
-    scope.revertBook('123456789');
-    expect(scope.books[1].title)
+    scope.revertItem('123456789');
+    expect(scope.items[1].title)
       .toBe('abc');
-    expect(scope.originalBook)
+    expect(scope.originalItem)
       .toBe(null);
-    scope.originalBook = {
+    scope.originalItem = {
       title: 'abc',
       index: '123456789'
     };
     scope.isEmpty = true;
-    scope.revertBook('');
-    expect(scope.books[1].title)
+    scope.revertItem('');
+    expect(scope.items[1].title)
       .toBe('abc');
   });
 
-  it('editBook: initialize changes', function () {
-    scope.editBook({
+  it('editItem: initialize changes', function () {
+    scope.editItem({
       title: 'Test 1'
     }, '123456789');
-    expect(scope.book.title)
+    expect(scope.item.title)
       .toBe('Test 1');
     expect(scope.index)
       .toBe('123456789');
   });
 
-  it('saveEdits: save this book to the list', function () {
-    scope.books = [
+  it('saveEdits: save this item to the list', function () {
+    scope.items = [
       {
         index: '1'
       },
@@ -127,32 +127,32 @@ describe('Controller: MainCtrl', function () {
         index: '123456789'
       }
     ];
-    scope.saveEdits({ // save an existing book
+    scope.saveEdits({ // save an existing item
       title: '<Test 1',
       author: 'New',
       mark: '5'
     }, '123456789');
-    expect(scope.books[1].title)
+    expect(scope.items[1].title)
       .toBe('&lt;Test 1');
-    scope.saveEdits({ // change the mark for an existing book
+    scope.saveEdits({ // change the mark for an existing item
       title: 'Test 2',
       author: 'New',
       tag: 'fiction',
       mark: '3'
     }, '1');
-    expect(scope.books[0].title)
+    expect(scope.items[0].title)
       .toBe('Test 2');
-    expect(scope.books[0].tag)
+    expect(scope.items[0].tag)
       .toBe('fiction');
-    scope.saveEdits({ // save an empty book
+    scope.saveEdits({ // save an empty item
       title: '',
       author: '',
       mark: '3'
     }, '1');
-    expect(scope.books.length)
+    expect(scope.items.length)
       .toBe(2);
     scope.isEmpty = true; // add a new one
-    scope.book = {
+    scope.item = {
       title: 'asd',
       author: 'A',
       mark: '6'
@@ -162,29 +162,29 @@ describe('Controller: MainCtrl', function () {
       author: 'A',
       mark: '6'
     }, '');
-    expect(scope.books.length)
+    expect(scope.items.length)
       .toBe(3);
 
-    // console.debug(scope.books);
+    // console.debug(scope.items);
   });
 
-  it('sortableBookList: set a sortable object', function () {
-    expect(scope.sortableBookList.delay)
+  it('sortableItemList: set a sortable object', function () {
+    expect(scope.sortableItemList.delay)
       .toBe(0);
-    expect(scope.sortableBookList.animation)
+    expect(scope.sortableItemList.animation)
       .toBe(150);
-    expect(scope.sortableBookList.handle)
-      .toBe('.book-itm-tag');
+    expect(scope.sortableItemList.handle)
+      .toBe('.item-itm-tag');
 
-    // console.debug(scope.books);
+    // console.debug(scope.items);
   });
 
   it('clearDateInp: clear a date input state', function () {
-    scope.book = {
+    scope.item = {
       date: '2000-06-01'
     };
     scope.clearDateInp();
-    expect(scope.book.date)
+    expect(scope.item.date)
       .toBe('');
   });
 });

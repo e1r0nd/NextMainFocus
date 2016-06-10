@@ -10,13 +10,13 @@ angular.module('nextmainfocusApp')
     'use strict';
 
     var searchIndex = function (index) {
-        // select a book by its index
+        // select a item by its index
         var i;
 
         try {
-          for (i in $scope.books) {
-            if ($scope.books.hasOwnProperty(i)) {
-              if (index === $scope.books[i].index) {
+          for (i in $scope.items) {
+            if ($scope.items.hasOwnProperty(i)) {
+              if (index === $scope.items[i].index) {
                 return i;
               }
             }
@@ -27,7 +27,7 @@ angular.module('nextmainfocusApp')
           }
         }
       },
-      encodeBooks = function () {
+      encodeItems = function () {
         // encode html, $sanitize doesn't work with cyrillic
         var i,
           prop,
@@ -46,11 +46,11 @@ angular.module('nextmainfocusApp')
           };
 
         try {
-          for (i in $scope.books) {
-            if ($scope.books.hasOwnProperty(i)) {
-              for (prop in $scope.books[i]) {
-                if ($scope.books[i].hasOwnProperty(prop)) {
-                  $scope.books[i][prop] = String($scope.books[i][prop])
+          for (i in $scope.items) {
+            if ($scope.items.hasOwnProperty(i)) {
+              for (prop in $scope.items[i]) {
+                if ($scope.items[i].hasOwnProperty(prop)) {
+                  $scope.items[i][prop] = String($scope.items[i][prop])
                     .replace(/[&<>]/g, replaceTag);
                 }
               }
@@ -62,39 +62,39 @@ angular.module('nextmainfocusApp')
           }
         }
       },
-      updateBooks = function (isOrdered) {
-        // boolean isOrdered - don't reorder books if Wishlist is opened
+      updateItems = function (isOrdered) {
+        // boolean isOrdered - don't reorder items if Focus is opened
         var i,
           index,
           filteredItems;
 
         try {
           if (!isOrdered) { // reorder wishlist
-            filteredItems = $filter('orderBy')($filter('filter')($scope.books, {
-              mark: '5'
+            filteredItems = $filter('orderBy')($filter('filter')($scope.items, {
+              type: 'task'
             }), 'order');
 
             for (i in filteredItems) {
               if (filteredItems.hasOwnProperty(i)) {
                 index = searchIndex(filteredItems[i].index);
-                $scope.books[index].order = i;
+                $scope.items[index].order = i;
               }
             }
           }
-          localStorageService.set('books', $scope.books);
-          $scope.$root.$broadcast('reloadBooks');
+          localStorageService.set('items', $scope.items);
+          $scope.$root.$broadcast('reloadItems');
         } catch (e) {
           if (window.console && window.console.error) {
             console.error(e, e.stack);
           }
         }
       },
-      booksInStore = localStorageService.get('books');
+      itemsInStore = localStorageService.get('items');
 
-    $scope.books = booksInStore || [];
+    $scope.items = itemsInStore || [];
 
-    $scope.removeBookDialog = function (index) {
-      // store a book's index before the removing in removeBook()
+    $scope.removeItemDialog = function (index) {
+      // store a item's index before the removing in removeItem()
       try {
         $scope.index = index;
       } catch (e) {
@@ -103,11 +103,11 @@ angular.module('nextmainfocusApp')
         }
       }
     };
-    $scope.removeBook = function (index) {
-      // remove the book by the stored index in removeBookDialog()
+    $scope.removeItem = function (index) {
+      // remove the item by the stored index in removeItemDialog()
       try {
-        $scope.books.splice(searchIndex(index), 1);
-        updateBooks(); // save the current book's set
+        $scope.items.splice(searchIndex(index), 1);
+        updateItems(); // save the current item's set
         $scope.confirmRemove.modal('hide');
       } catch (e) {
         if (window.console && window.console.error) {
@@ -116,11 +116,11 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.addBook = function () {
-      // add new book
+    $scope.addItem = function () {
+      // add new item
       try {
-        $scope.books.push($scope.book);
-        $scope.book = '';
+        $scope.items.push($scope.item);
+        $scope.item = '';
       } catch (e) {
         if (window.console && window.console.error) {
           console.error(e, e.stack);
@@ -128,17 +128,16 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.newBook = function (article) {
-      // create a fresh new book in a separate object
+    $scope.newItem = function (project) {
+      // create a fresh new item in a separate object
       try {
-        $scope.book = {};
+        $scope.item = {};
 
         $scope.isEmpty = true; // drop the dirty flag for the Modal dialog
-        $scope.book.mark = '5';
-        $scope.book.type = (article) ? 'article' : 'book';
-        $scope.bookTitleHelper.html($filter('translate')('BOOK_NOT_EMPTY'));
-        ['Title', 'Author', 'Date'].forEach(function (itm) { // clear inputs
-          $('#book' + itm + 'Div')
+        $scope.item.type = (project) ? 'project' : 'task';
+        $scope.itemTitleHelper.html($filter('translate')('ITEM_NOT_EMPTY'));
+        ['Title', 'Date', 'Acronym', 'Details'].forEach(function (itm) { // clear inputs
+          $('#item' + itm + 'Div')
             .addClass('is-empty');
         });
       } catch (e) {
@@ -148,14 +147,14 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.revertBook = function (index) {
-      // revert changes for the edited book
+    $scope.revertItem = function (index) {
+      // revert changes for the edited item
       try {
         if (!$scope.isEmpty) {
-          $scope.books[searchIndex(index)] = $scope.originalBook;
+          $scope.items[searchIndex(index)] = $scope.originalItem;
           $scope.index = null;
-          $scope.originalBook = null;
-          updateBooks(); // save the current book's set
+          $scope.originalItem = null;
+          updateItems(); // save the current item's set
         }
         $('.has-error, .is-empty')
           .removeClass('has-error is-empty');
@@ -166,14 +165,14 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.editBook = function (book, index) {
+    $scope.editItem = function (item, index) {
       // create a clone for editing
       try {
         $scope.isEmpty = false;
         $('.is-empty')
           .removeClass('is-empty'); // set the dirty flag for the Modal dialog #29
-        $scope.book = book;
-        $scope.originalBook = angular.extend({}, book);
+        $scope.item = item;
+        $scope.originalItem = angular.extend({}, item);
         $scope.index = index;
       } catch (e) {
         if (window.console && window.console.error) {
@@ -182,22 +181,22 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.saveEdits = function (book, index) {
-      //save all chages or add the new created book
+    $scope.saveEdits = function (item, index) {
+      //save all chages or add the new created item
       try {
-        var theSameTitle = function (title, index) { // don't add books with the same title
+        var theSameTitle = function (title, index) { // don't add items with the same title
             var i,
-              bookIndex = searchIndex(index);
+              itemIndex = searchIndex(index);
 
             try {
               if (!title) {
                 return;
               }
-              for (i in $scope.books) {
-                if ($scope.books.hasOwnProperty(i)) {
-                  if ($scope.books[i].title &&
-                    (($scope.books[i].title.toLowerCase() === title.toLowerCase() && $scope.isEmpty) ||
-                      ($scope.books[i].title.toLowerCase() === title.toLowerCase() && bookIndex !== i))) {
+              for (i in $scope.items) {
+                if ($scope.items.hasOwnProperty(i)) {
+                  if ($scope.items[i].title &&
+                    (($scope.items[i].title.toLowerCase() === title.toLowerCase() && $scope.isEmpty) ||
+                      ($scope.items[i].title.toLowerCase() === title.toLowerCase() && itemIndex !== i))) {
                     return true;
                   }
                 }
@@ -209,43 +208,30 @@ angular.module('nextmainfocusApp')
               }
             }
           },
-          today,
-          isTheSameTitle = theSameTitle(book.title, index);
+          isTheSameTitle = theSameTitle(item.title, index);
 
         $scope.isError = false;
         // check for empty values
-        ['Title', 'Author', 'Mark', 'date'].forEach(function (itm) {
-          if ((!book[itm.toLowerCase()] || isTheSameTitle) && !$scope.isError) {
-            if (!book.title) {
-              $scope.bookTitleHelper.html($filter('translate')('BOOK_NOT_EMPTY'));
+        ['Title'].forEach(function (itm) {
+          if ((!item[itm.toLowerCase()] || isTheSameTitle) && !$scope.isError) {
+            if (!item.title) {
+              $scope.itemTitleHelper.html($filter('translate')('ITEM_NOT_EMPTY'));
             } else if (isTheSameTitle) {
-              $scope.bookTitleHelper.html($filter('translate')('BOOK_EXISTS'));
+              $scope.itemTitleHelper.html($filter('translate')('ITEM_EXISTS'));
             }
 
-            if ('date' !== itm) {
-              $scope['book' + itm].focus();
-              $scope['book' + itm + 'Div'].addClass('has-error');
-              $scope.isError = true;
-            }
-          }
-          if ('date' === itm) { // if date is not provided
-            today = new Date(); // set today for Done books
-            book.date = (!book.date && book.mark > 0 && book.mark < 5) ? today.getFullYear() + '-' + ((today.getMonth() < 10) ? '0' : '') + (today.getMonth() + 1) + '-' + ((today.getDate() < 10) ? '0' : '') + today.getDate() : book.date || '';
-          }
-          if ('Mark' === itm) {
-            book.mark = (isNaN(+book.mark) || book.mark < '1' || book.mark > '6') ? '5' : book.mark;
-          }
-          if ('Tag' === itm) {
-            book.tag = ((book.tag !== 'fiction') || (book.tag !== 'education') || (book.tag !== 'entertainment')) ? '' : book.tag;
+            $scope['item' + itm].focus();
+            $scope['item' + itm + 'Div'].addClass('has-error');
+            $scope.isError = true;
           }
         });
 
         if (!$scope.isError) {
           $scope.addNew.modal('hide');
-          book.index = Date.now();
-          if ($scope.books[searchIndex(index)] && ($scope.books[searchIndex(index)].mark !== book.mark)) {
-            book.order = String($filter('filter')($scope.books, {
-                mark: '5'
+          item.index = Date.now();
+          if ($scope.items[searchIndex(index)] && ($scope.items[searchIndex(index)].type !== item.type)) {
+            item.order = String($filter('filter')($scope.items, {
+                type: 'task'
               })
               .length); // the last one in the order
           }
@@ -253,15 +239,15 @@ angular.module('nextmainfocusApp')
           return;
         }
 
-        if ($scope.isEmpty) { // add new book
-          $scope.addBook();
-        } else { // or save edited book
-          $scope.books[searchIndex(index)] = book;
+        if ($scope.isEmpty) { // add new item
+          $scope.addItem();
+        } else { // or save edited item
+          $scope.items[searchIndex(index)] = item;
           $scope.index = null;
         }
 
-        encodeBooks(); // perform HTML tags
-        updateBooks(!$scope.isEmpty); // save the current book's set
+        encodeItems(); // perform HTML tags
+        updateItems(!$scope.isEmpty); // save the current item's set
       } catch (e) {
         if (window.console && window.console.error) {
           console.error(e, e.stack);
@@ -269,11 +255,11 @@ angular.module('nextmainfocusApp')
       }
     };
 
-    $scope.sortableBookList = {
+    $scope.sortableItemList = {
       // create an object for the sortable list
       delay: 0,
       animation: 150,
-      handle: '.book-itm-tag', // match the draggable tag
+      handle: '.item-itm-tag', // match the draggable tag
       onUpdate: function (evt) { // Called by any change to the list (add / update / remove)
         var i, index;
 
@@ -281,10 +267,10 @@ angular.module('nextmainfocusApp')
           for (i in evt.models) { // reorder the Wishlist
             if (evt.models.hasOwnProperty(i)) {
               index = searchIndex(evt.models[i].index);
-              $scope.books[index].order = i;
+              $scope.items[index].order = i;
             }
           }
-          updateBooks(true); // save the current book's set
+          updateItems(true); // save the current item's set
         } catch (e) {
           if (window.console && window.console.error) {
             console.error(e, e.stack);
@@ -294,105 +280,78 @@ angular.module('nextmainfocusApp')
     };
 
     $scope.clearDateInp = function () {
-      // clear a book's date
-      $scope.book.date = '';
+      // clear a item's date
+      $scope.item.date = '';
     };
 
-    if (null === booksInStore) { // create demo data for a new user
+    if (null === itemsInStore) { // create demo data for a new user
       try {
-        $scope.books = [{
-          author: 'Author A',
+        $scope.items = [{
+          title: 'Project A',
           date: '',
           index: '0001',
-          mark: '5',
           order: '1',
-          type: 'book',
-          tag: 'fiction',
-          title: 'New Book'
+          type: 'project',
+          parentID: '',
+          acronym: 'PRA',
+          details: ''
         }, {
-          author: 'https://github.com/e1r0nd/PersonalBookShelf/wiki',
-          date: '',
-          index: '0011',
-          mark: '5',
-          order: '2',
-          type: 'article',
-          tag: 'education',
-          title: 'e1r0nd: PBS - Wiki'
-        }, {
-          author: 'Author A',
+          title: 'Project B',
           date: '',
           index: '0002',
-          mark: '5',
-          order: '3',
-          type: 'book',
-          tag: 'education',
-          title: 'Old book'
+          order: '2',
+          type: 'project',
+          parentID: '',
+          acronym: 'PRA',
+          details: ''
         }, {
-          author: 'Author B',
+          title: 'Task 1',
           date: '',
           index: '0003',
-          mark: '5',
-          order: '4',
-          type: 'book',
-          tag: '',
-          title: 'Someday read this'
+          order: '1',
+          type: 'task',
+          parentID: '0001',
+          acronym: '',
+          details: 'Some details here'
         }, {
-          author: 'Author A',
+          title: 'Task 2',
           date: '',
           index: '0004',
-          mark: '0',
-          order: '0',
-          type: 'book',
-          tag: 'entertainment',
-          title: 'Good book'
+          order: '2',
+          type: 'task',
+          parent: '0001',
+          acronym: '',
+          details: 'Lorem epsilum est dollar set amet?'
         }, {
-          author: 'Author C',
-          date: '1982-02-13',
-          index: '0005',
-          mark: '4',
-          order: '0',
-          type: 'book',
-          tag: '',
-          title: 'This is the best one'
-        }, {
-          author: 'Author D',
-          date: '1991-03-14',
-          index: '0006',
-          mark: '1',
-          order: '0',
-          type: 'book',
-          tag: '',
-          title: 'The cat-book'
-        }, {
-          author: 'Author D',
-          date: '1991-03-20',
-          index: '0007',
-          mark: '2',
-          order: '0',
-          type: 'book',
-          tag: 'entertainment',
-          title: 'The dog-book'
-        }, {
-          author: 'Author E',
-          date: '2000-06-15',
-          index: '0008',
-          mark: '3',
-          order: '0',
-          type: 'book',
-          tag: 'education',
-          title: 'The bird-book'
-        }, {
-          author: 'Author F',
+          title: 'Task A',
           date: '',
-          index: '0009',
-          mark: '6',
-          order: '0',
-          type: 'book',
-          tag: 'entertainment',
-          title: 'The worst book'
+          index: '0005',
+          order: '3',
+          type: 'task',
+          parent: '0001',
+          acronym: '',
+          details: ''
+        }, {
+          title: 'Point 1',
+          date: '',
+          index: '0006',
+          order: '1',
+          type: 'task',
+          parent: '0002',
+          acronym: '',
+          details: 'This is the best one'
+        }, {
+          title: 'Point 2',
+          date: '',
+          index: '0005',
+          order: '2',
+          type: 'task',
+          parent: '0002',
+          acronym: '',
+          details: 'The cat-item'
         }];
 
-        updateBooks(true); // save the current book's set
+        updateItems(true); // save the current item's set
       } catch (err) {
         if (window.console && window.console.error) {
           console.error(err, err.stack);
@@ -407,15 +366,19 @@ angular.module('nextmainfocusApp')
           $scope.addNew = $('#addNew');
           $scope.addBtn = $('#addBtn');
           $scope.confirmRemove = $('#confirmRemove');
-          $scope.bookDate = $('#bookDate');
-          $scope.bookTitleHelper = $('#bookTitleHelper');
-          $scope.bookTitle = $('#bookTitle');
-          $scope.bookTitleDiv = $('#bookTitleDiv');
-          $scope.bookAuthor = $('#bookAuthor');
-          $scope.bookAuthorDiv = $('#bookAuthorDiv');
-          $scope.bookMark = $('#bookMark');
-          $scope.bookMarkDiv = $('#bookMarkDiv');
-          $scope.bookToggler = $('#bookToggler');
+          $scope.itemDate = $('#itemDate');
+          $scope.itemTitleHelper = $('#itemTitleHelper');
+          $scope.itemTitle = $('#itemTitle');
+          $scope.itemTitleDiv = $('#itemTitleDiv');
+          $scope.itemAcronym = $('#itemAcronym');
+          $scope.itemAcronymDiv = $('#itemAcronymDiv');
+          $scope.itemParent = $('#itemParent');
+          $scope.itemParentDiv = $('#itemParentDiv');
+          $scope.itemDescription = $('#itemDescription');
+          $scope.itemDescriptionDiv = $('#itemDescriptionDiv');
+          $scope.itemType = $('#itemType');
+          $scope.itemTypeDiv = $('#itemTypeDiv');
+          $scope.itemToggler = $('#itemToggler');
           $rootScope.togglebuttonBtn = $('.togglebutton-btn');
 
           try {
@@ -424,16 +387,16 @@ angular.module('nextmainfocusApp')
                 $scope.addBtn.fadeOut();
                 if ($('.togglebutton .toggle')
                   .length > 1) {
-                  $scope.bookToggler.hide();
+                  $scope.itemToggler.hide();
                 } else {
-                  $scope.bookToggler.show();
+                  $scope.itemToggler.show();
                 }
               })
               .on('hide.bs.modal', function () {
                 $scope.addBtn.fadeIn();
               });
 
-            $scope.bookDate.bootstrapMaterialDatePicker({ // init the Datapicker
+            $scope.itemDate.bootstrapMaterialDatePicker({ // init the Datapicker
               format: 'YYYY-MM-DD',
               lang: $translate.use(),
               weekStart: 1,
