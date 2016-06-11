@@ -1,4 +1,4 @@
-<ul class="well" ng-if="filters == 'focus'">
+<ul class="well" ng-if="filters == 'focus' || filters == ''">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
   <li class="item-group" ng-repeat="item in filteredItems | filter: global.search">
     <div class="item-itm-view lead">
@@ -8,9 +8,8 @@
           {{item.title}}
           <span class="item-author" ng-show="item.type=='project'">({{item.acronym}})</span>
         </span>
-        <p class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</p>
-        <p class="text-muted" ng-if="!item.date" translate>DATE_UNDEFINED</p>
-        <p class="item-author item-author-lnk" ng-show="item.type=='task'">{{item.details}}</p>
+        <sapn class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</span>
+          <p class="item-author item-author-lnk" ng-show="item.type=='task'">{{item.details}}</p>
       </div>
       <div class="btn-group-sm item-remove-btn cursor">
         <span class="btn btn-default btn-fab" ng-click="removeItemDialog(item.index)" data-toggle="modal" data-target="#confirmRemove"><i class="material-icons">close</i></span>
@@ -21,10 +20,10 @@
     </div>
   </li>
 </ul>
-<ul class="well" ng-if="filters != 'focus' && !filteredItems.length">
+<ul class="well" ng-if="filters && != 'focus' && !filteredItems.length">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
 </ul>
-<ul class="well" ng-sortable="sortableItemList" ng-if="filters != 'focus' && filteredItems.length">
+<ul class="well" ng-sortable="sortableItemList" ng-if="filters && filters != 'focus' && filteredItems.length">
   <li class="item-group" ng-repeat="item in filteredItems">
     <div class="item-itm-view lead">
       <div class="item-itm-tag"><i class="material-icons">reorder</i></div>
@@ -34,8 +33,7 @@
           {{item.title}}
           <span class="item-author" ng-show="item.type=='project'">({{item.acronym}})</span>
         </span>
-        <p class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</p>
-        <p class="text-muted" ng-if="!item.date" translate>DATE_UNDEFINED</p>
+        <span class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</span>
         <p class="item-author item-author-lnk" ng-show="item.type=='task'">{{item.details}}</p>
       </div>
       <div class="btn-group-sm item-remove-btn cursor">
