@@ -8,7 +8,7 @@
 angular.module('nextmainfocusApp')
   .controller('MenuCtrl', function ($scope, $rootScope, $filter, localStorageService, $translate, $routeParams) {
     'use strict';
-    var booksInStore = localStorageService.get('books'),
+    var itemsInStore = localStorageService.get('items'),
       searchMatch = function (haystack, needle) {
         // check fields for input queries
         try {
@@ -24,15 +24,15 @@ angular.module('nextmainfocusApp')
         }
       };
 
-    $scope.books = booksInStore || [];
+    $scope.items = itemsInStore || [];
     $scope.language = $translate.use();
     $scope.params = $routeParams;
 
-    $scope.$on('reloadBooks', function () {
-      // reindex lists on a book's changing
+    $scope.$on('reloadItems', function () {
+      // reindex lists on a item's changing
       try {
-        booksInStore = localStorageService.get('books');
-        $scope.books = booksInStore || [];
+        itemsInStore = localStorageService.get('items');
+        $scope.items = itemsInStore || [];
         $scope.search();
       } catch (e) {
         if (window.console && window.console.error) {
@@ -81,9 +81,9 @@ angular.module('nextmainfocusApp')
     };
 
     $scope.search = function () {
-      // init the filtered books
+      // init the filtered items
       try {
-        $rootScope.filteredItems = $filter('filter')($scope.books, function (item) {
+        $rootScope.filteredItems = $filter('filter')($scope.items, function (item) {
           if (($scope.filters === item.mark) ||
             ('1' === $scope.filters && item.mark > 0 && item.mark < 4) ||
             ('-1' === $scope.filters && searchMatch(item.title, $scope.query))
@@ -103,7 +103,7 @@ angular.module('nextmainfocusApp')
           }
           return false;
         });
-        if ('5' === $scope.filters) { //reorder books for the Wish-list
+        if ('5' === $scope.filters) { //reorder items for the Wish-list
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'order');
         } else {
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'date');

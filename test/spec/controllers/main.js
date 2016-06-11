@@ -17,9 +17,9 @@ describe('Controller: MainCtrl', function () {
       this.focus = function () {};
       this.addClass = function () {};
     }
-    ['Title', 'Author', 'Mark', 'date', 'confirmRemove', 'itemTitleHelper', 'addNew'].forEach(function (itm, i) {
-      scope[((i < 4) ? 'item' : '') + itm] = new HtmlFactory();
-      if (i < 4) {
+    ['Title', 'date', 'confirmRemove', 'itemTitleHelper', 'addNew'].forEach(function (itm, i) {
+      scope[((i < 2) ? 'item' : '') + itm] = new HtmlFactory();
+      if (i < 2) {
         scope['item' + itm + 'Div'] = new HtmlFactory();
       }
     });
@@ -64,17 +64,13 @@ describe('Controller: MainCtrl', function () {
     scope.newItem(); // test a item
     expect(scope.isEmpty)
       .toBe(true);
-    expect(scope.item.mark)
-      .toBe('5');
     expect(scope.item.type)
-      .toBe('item');
-    scope.newItem(true); // test an article
+      .toBe('task');
+    scope.newItem(true); // test a project
     expect(scope.isEmpty)
       .toBe(true);
-    expect(scope.item.mark)
-      .toBe('5');
     expect(scope.item.type)
-      .toBe('article');
+      .toBe('project');
   });
 
   it('revertItem: revert changes', function () {
