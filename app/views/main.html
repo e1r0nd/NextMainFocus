@@ -1,14 +1,11 @@
-<ul class="well" ng-if="filter == 'items' && !filteredItems.length">
+<ul class="well" ng-if="filters == 'focus'">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
-</ul>
-<ul class="well" ng-sortable="sortableItemList" ng-if="type == 'task' && filteredItems.length">
-  <li class="item-group" ng-repeat="item in filteredItems">
+  <li class="item-group" ng-repeat="item in filteredItems | filter: global.search">
     <div class="item-itm-view lead">
-      <div class="item-itm-tag"><i class="material-icons">reorder</i></div>
       <div class="list-itm-elem cursor" ng-click="editItem(item, item.index)" data-toggle="modal" data-target="#addNew">
         <span class="item-title">
           <span class="item-author" ng-show="item.type=='task'">{{item.acronym}}:</span>
-          &laquo;{{item.title}}&raquo;.
+          {{item.title}}
           <span class="item-author" ng-show="item.type=='project'">({{item.acronym}})</span>
         </span>
         <p class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</p>
@@ -24,14 +21,17 @@
     </div>
   </li>
 </ul>
-<ul class="well" ng-if="filters != 'items'">
+<ul class="well" ng-if="filters != 'focus' && !filteredItems.length">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
-  <li class="item-group" ng-repeat="item in filteredItems | filter: global.search">
+</ul>
+<ul class="well" ng-sortable="sortableItemList" ng-if="filters != 'focus' && filteredItems.length">
+  <li class="item-group" ng-repeat="item in filteredItems">
     <div class="item-itm-view lead">
+      <div class="item-itm-tag"><i class="material-icons">reorder</i></div>
       <div class="list-itm-elem cursor" ng-click="editItem(item, item.index)" data-toggle="modal" data-target="#addNew">
         <span class="item-title">
           <span class="item-author" ng-show="item.type=='task'">{{item.acronym}}:</span>
-          &laquo;{{item.title}}&raquo;.
+          {{item.title}}
           <span class="item-author" ng-show="item.type=='project'">({{item.acronym}})</span>
         </span>
         <p class="text-muted" ng-if="item.date">{{item.date | asDate | date: 'dd.MM.yyyy'}}</p>

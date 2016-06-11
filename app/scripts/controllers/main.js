@@ -69,7 +69,7 @@ angular.module('nextmainfocusApp')
           filteredItems;
 
         try {
-          if (!isOrdered) { // reorder wishlist
+          if (!isOrdered) { // reorder items
             filteredItems = $filter('orderBy')($filter('filter')($scope.items, {
               type: 'task'
             }), 'order');
@@ -288,9 +288,9 @@ angular.module('nextmainfocusApp')
       try {
         $scope.items = [{
           title: 'Project A',
-          date: '',
+          date: '2016-06-12',
           index: '0001',
-          order: '1',
+          order: '2',
           type: 'project',
           parentID: '',
           acronym: 'PRA',
@@ -299,55 +299,55 @@ angular.module('nextmainfocusApp')
           title: 'Project B',
           date: '',
           index: '0002',
-          order: '2',
+          order: '1',
           type: 'project',
           parentID: '',
-          acronym: 'PRA',
+          acronym: 'PRB',
           details: ''
         }, {
           title: 'Task 1',
-          date: '',
+          date: '2016-06-15',
           index: '0003',
-          order: '1',
+          order: '0',
           type: 'task',
           parentID: '0001',
-          acronym: '',
+          acronym: 'PRA',
           details: 'Some details here'
         }, {
           title: 'Task 2',
           date: '',
           index: '0004',
-          order: '2',
+          order: '1',
           type: 'task',
           parent: '0001',
-          acronym: '',
+          acronym: 'PRA',
           details: 'Lorem epsilum est dollar set amet?'
         }, {
           title: 'Task A',
           date: '',
           index: '0005',
-          order: '3',
+          order: '2',
           type: 'task',
           parent: '0001',
-          acronym: '',
+          acronym: 'PRA',
           details: ''
         }, {
           title: 'Point 1',
           date: '',
           index: '0006',
-          order: '1',
+          order: '0',
           type: 'task',
           parent: '0002',
-          acronym: '',
+          acronym: 'PRB',
           details: 'This is the best one'
         }, {
           title: 'Point 2',
           date: '',
           index: '0005',
-          order: '2',
+          order: '1',
           type: 'task',
           parent: '0002',
-          acronym: '',
+          acronym: 'PRB',
           details: 'The cat-item'
         }];
 

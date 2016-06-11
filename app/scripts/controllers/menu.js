@@ -56,49 +56,37 @@ angular.module('nextmainfocusApp')
     $scope.topmenu = [
       {
         name: 'MENU_FOCUS',
-        value: '5',
+        value: 'focus',
         icon: 'all_out'
             },
       {
         name: 'MENU_PROJECTS',
-        value: '0',
+        value: 'project',
         icon: 'folder'
             },
       {
         name: 'MENU_TASKS',
-        value: '4',
+        value: 'task',
         icon: 'list'
             }
     ];
 
     // init filters
     $scope.filters = 'focus';
-    $scope.type = '';
 
     $scope.search = function () {
       // init the filtered items
       try {
         $rootScope.filteredItems = $filter('filter')($scope.items, function (item) {
-          if (($scope.filters === item.mark) ||
-            ('1' === $scope.filters && item.mark > 0 && item.mark < 4) ||
+          if (($scope.filters === item.type) ||
+            ('focus' === $scope.filters && '0' === item.order && 'task' === item.type) ||
             ('' === $scope.filters && searchMatch(item.title, $scope.query))
           ) {
-            if ($scope.type && item.type !== $scope.type) {
-              return false;
-            }
-            if ((!$scope.tags.fiction && !$scope.tags.education && !$scope.tags.entertainment) ||
-              ($scope.tags.fiction && 'fiction' === item.tag) ||
-              ($scope.tags.education && 'education' === item.tag) ||
-              ($scope.tags.entertainment && 'entertainment' === item.tag)) {
-              return true;
-            } else {
-              return false;
-            }
             return true;
           }
           return false;
         });
-        if ('5' === $scope.filters) { //reorder items for the Wish-list
+        if ('focus' !== $scope.filters) { //reorder items for the Wish-list
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'order');
         } else {
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'date');
@@ -116,30 +104,6 @@ angular.module('nextmainfocusApp')
       // select current filter
       try {
         $scope.filters = value;
-        $scope.search();
-      } catch (e) {
-        if (window.console && window.console.error) {
-          console.error(e, e.stack);
-        }
-      }
-    };
-
-    $scope.toggleTag = function (value) {
-      // toggle a filtering by tags
-      try {
-        $scope.tags[value] = !$scope.tags[value];
-        $scope.search();
-      } catch (e) {
-        if (window.console && window.console.error) {
-          console.error(e, e.stack);
-        }
-      }
-    };
-
-    $scope.selectType = function (value) {
-      // select a range
-      try {
-        $scope.type = value;
         $scope.search();
       } catch (e) {
         if (window.console && window.console.error) {
