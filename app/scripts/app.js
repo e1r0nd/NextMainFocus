@@ -25,11 +25,6 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/view/:view/all', {
-        templateUrl: 'views/statistics.html',
-        controller: 'StatisticsCtrl',
-        controllerAs: 'statistics'
-      })
       .otherwise({
         redirectTo: '/view/items'
       });

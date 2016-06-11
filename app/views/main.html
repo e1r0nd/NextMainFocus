@@ -1,4 +1,4 @@
-<ul class="well" ng-if="filter == '1' && !filteredItems.length">
+<ul class="well" ng-if="filter == 'items' && !filteredItems.length">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
 </ul>
 <ul class="well" ng-sortable="sortableItemList" ng-if="type == 'task' && filteredItems.length">
@@ -24,7 +24,7 @@
     </div>
   </li>
 </ul>
-<ul class="well" ng-if="filters != '1'">
+<ul class="well" ng-if="filters != 'items'">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
   <li class="item-group" ng-repeat="item in filteredItems | filter: global.search">
     <div class="item-itm-view lead">

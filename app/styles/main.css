@@ -94,16 +94,16 @@ body .container .well {
   padding: 19px 0;
 }
 
-.book-itm-view {
+.item-itm-view {
   margin: 0;
   position: relative;
 }
 
-.book-itm-view p {
+.item-itm-view p {
   margin: 0;
 }
 
-.book-remove-btn {
+.item-remove-btn {
   position: absolute;
   right: 5%;
   top: 15px;
@@ -114,44 +114,44 @@ body .container .well {
   padding: 5px 85px 5px 71px;
 }
 
-.book-itm-view:hover {
+.item-itm-view:hover {
   background: #E0F2F1;
 }
 
-.book-itm-tag {
+.item-itm-tag {
   cursor: move;
   left: 24px;
   position: absolute;
   top: 22px;
 }
 
-.book-group,
+.item-group,
 .month-group {
   list-style: none;
 }
 
-.book-group {
+.item-group {
   border-bottom: 1px solid #80CBC4;
 }
 
-.book-group:last-child {
+.item-group:last-child {
   border-bottom: none;
 }
 
-.book-title {
+.item-title {
   font-weight: bold;
 }
 
-.book-author {
+.item-author {
   font-style: italic;
 }
 
-.book-mark-itm {
+.item-mark-itm {
   padding-left: 10px;
   vertical-align: middle;
 }
 
-.book-date-btn {
+.item-date-btn {
   position: absolute;
   right: 0;
   top: 0;
@@ -239,7 +239,7 @@ body .container .well {
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  .btn-group-sm .btn-link-book,
+  .btn-group-sm .btn-link-item,
   .btn-group-sm .btn-link-article {
     bottom: 72px;
     opacity: 0;
@@ -251,7 +251,7 @@ body .container .well {
   .btn-group-sm .btn-link-article {
     bottom: 124px;
   }
-  .add-btn-wrapper:hover .btn-link-book,
+  .add-btn-wrapper:hover .btn-link-item,
   .add-btn-wrapper:hover .btn-link-article {
     opacity: 1;
     transform: scale(1);
@@ -267,7 +267,7 @@ body .container .well {
     background-color: #4caf50;
   }
   .tooltip-link,
-  .tooltip-link-book,
+  .tooltip-link-item,
   .tooltip-link-article {
     top: 19px;
     right: 60px;
@@ -276,15 +276,15 @@ body .container .well {
   }
   .add-btn:hover .tooltip-link,
   .btn-link-wrapper:hover .tooltip-link-article,
-  .btn-link-wrapper:hover .tooltip-link-book,
-  .book-remove-btn:hover .tooltip-link-remove {
+  .btn-link-wrapper:hover .tooltip-link-item,
+  .item-remove-btn:hover .tooltip-link-remove {
     display: block;
   }
-  .tooltip-link-book,
+  .tooltip-link-item,
   .tooltip-link-article {
     width: 115px;
   }
-  .tooltip-link-book {
+  .tooltip-link-item {
     top: 69px;
   }
   .tooltip-link-remove {
@@ -344,13 +344,13 @@ body .container .well {
     padding-right: 0;
     padding-top: 6px;
   }
-  .book-itm-elem {
+  .item-itm-elem {
     padding: 5px;
   }
-  .book-itm-tag {
+  .item-itm-tag {
     left: 5px;
   }
-  .book-remove-btn {
+  .item-remove-btn {
     right: 16px;
     top: 5px;
   }

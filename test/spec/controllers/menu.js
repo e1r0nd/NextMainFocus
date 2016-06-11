@@ -44,16 +44,16 @@ describe('Controller: MenuCtrl', function () {
     rootScope = $rootScope.$new();
   }));
 
-  it('reloadBooks: broadcast ', function () {
-    scope.books = [{
+  it('reloadItems: broadcast ', function () {
+    scope.items = [{
       mark: '1'
     }, {
       mark: '2'
     }, {
       mark: '5'
     }];
-    scope.filters = '5';
-    scope.$root.$broadcast('reloadBooks');
+    scope.filters = '1';
+    scope.$root.$broadcast('reloadItems');
     // console.debug(rootScope.filteredItems);
     expect(rootScope.filteredItems.length)
       .toBe(1);
@@ -65,8 +65,8 @@ describe('Controller: MenuCtrl', function () {
       .toBe('ru');
   });
 
-  it('search: search two books with the mark 1 in the list of three ', function () {
-    scope.books = [{
+  it('search: search two items with the mark 1 in the list of three ', function () {
+    scope.items = [{
       mark: '1'
     }, {
       mark: '2'
@@ -83,8 +83,8 @@ describe('Controller: MenuCtrl', function () {
       .toBe(1);
   });
 
-  it('toggleFilters: should filter on toggle and get one book with the mark 6', function () {
-    scope.books = [{
+  it('toggleFilters: should filter on toggle and get one item with the mark 6', function () {
+    scope.items = [{
       mark: '1'
     }, {
       mark: '1'
@@ -96,8 +96,8 @@ describe('Controller: MenuCtrl', function () {
       .toBe(1);
   });
 
-  it('selectType: should filter by type and get one book', function () {
-    scope.books = [{
+  it('selectType: should filter by type and get one item', function () {
+    scope.items = [{
       type: '1',
       mark: '6'
     }, {
@@ -114,7 +114,7 @@ describe('Controller: MenuCtrl', function () {
   });
 
   it('toggleSearch: should filter by search', function () {
-    scope.books = [{
+    scope.items = [{
       title: 'asd',
       mark: '6'
     }, {
@@ -139,8 +139,8 @@ describe('Controller: MenuCtrl', function () {
       .toBe('');
   });
 
-  it('toggleTag: get one book by tag Fiction', function () {
-    scope.books = [{
+  it('toggleTag: get one item by tag Fiction', function () {
+    scope.items = [{
       tag: 'fiction'
     }, {
       tag: 'education'

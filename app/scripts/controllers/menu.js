@@ -72,13 +72,8 @@ angular.module('nextmainfocusApp')
     ];
 
     // init filters
-    $scope.filters = '5';
+    $scope.filters = 'focus';
     $scope.type = '';
-    $scope.tags = {
-      'fiction': false,
-      'education': false,
-      'entertainment': false
-    };
 
     $scope.search = function () {
       // init the filtered items
@@ -86,7 +81,7 @@ angular.module('nextmainfocusApp')
         $rootScope.filteredItems = $filter('filter')($scope.items, function (item) {
           if (($scope.filters === item.mark) ||
             ('1' === $scope.filters && item.mark > 0 && item.mark < 4) ||
-            ('-1' === $scope.filters && searchMatch(item.title, $scope.query))
+            ('' === $scope.filters && searchMatch(item.title, $scope.query))
           ) {
             if ($scope.type && item.type !== $scope.type) {
               return false;
@@ -163,7 +158,7 @@ angular.module('nextmainfocusApp')
         $scope.searchDiv.toggle(); //display the Search field
         if (!isBack) {
           $scope.oldFilter = $scope.filters; //store the current filter's value
-          $scope.filters = '-1'; //drop all filters
+          $scope.filters = ''; //drop all filters
           $scope.searchInp.focus();
         } else {
           $scope.filters = $scope.oldFilter; //restore the previous filter
