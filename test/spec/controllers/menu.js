@@ -46,17 +46,15 @@ describe('Controller: MenuCtrl', function () {
 
   it('reloadItems: broadcast ', function () {
     scope.items = [{
-      mark: '1'
+      type: 'project'
     }, {
-      mark: '2'
-    }, {
-      mark: '5'
+      type: 'task'
     }];
-    scope.filters = '1';
+    scope.filters = '';
+    scope.query = '';
     scope.$root.$broadcast('reloadItems');
-    // console.debug(rootScope.filteredItems);
     expect(rootScope.filteredItems.length)
-      .toBe(1);
+      .toBe(2);
   });
 
   it('changeLanguage: set russian language ', function () {
@@ -65,66 +63,46 @@ describe('Controller: MenuCtrl', function () {
       .toBe('ru');
   });
 
-  it('search: search two items with the mark 1 in the list of three ', function () {
+  it('search: search two task items', function () {
     scope.items = [{
-      mark: '1'
+      type: 'task'
     }, {
-      mark: '2'
+      type: 'task'
     }, {
-      mark: '6'
+      type: 'project'
     }];
-    scope.filters = '1';
+    scope.filters = 'task';
     scope.search();
     expect(rootScope.filteredItems.length)
       .toBe(2);
-    scope.filters = '6';
+    scope.filters = 'project';
     scope.search();
     expect(rootScope.filteredItems.length)
       .toBe(1);
   });
 
-  it('toggleFilters: should filter on toggle and get one item with the mark 6', function () {
+  it('toggleFilters: should filter on toggle and get one item on focus', function () {
     scope.items = [{
-      mark: '1'
+      type: 'task',
+      order: '0'
     }, {
-      mark: '1'
-    }, {
-      mark: '6'
+      type: 'task',
+      order: '1'
     }];
-    scope.toggleFilters('6');
-    expect(rootScope.filteredItems.length)
-      .toBe(1);
-  });
-
-  it('selectType: should filter by type and get one item', function () {
-    scope.items = [{
-      type: '1',
-      mark: '6'
-    }, {
-      type: '1',
-      mark: '6'
-    }, {
-      type: '2',
-      mark: '6'
-    }];
-    scope.filters = '6';
-    scope.selectType('2');
+    scope.toggleFilters('focus');
     expect(rootScope.filteredItems.length)
       .toBe(1);
   });
 
   it('toggleSearch: should filter by search', function () {
     scope.items = [{
-      title: 'asd',
-      mark: '6'
+      title: 'asd'
     }, {
-      title: 'sdf',
-      mark: '6'
+      title: 'sdf'
     }, {
-      title: 'zxc',
-      mark: '6'
+      title: 'zxc'
     }];
-    scope.filters = '-1';
+    scope.filters = '';
     scope.query = 'sd';
     scope.toggleSearch();
     expect(rootScope.filteredItems.length)
@@ -139,16 +117,4 @@ describe('Controller: MenuCtrl', function () {
       .toBe('');
   });
 
-  it('toggleTag: get one item by tag Fiction', function () {
-    scope.items = [{
-      tag: 'fiction'
-    }, {
-      tag: 'education'
-    }];
-    scope.filters = '-1';
-    scope.toggleTag('fiction');
-    expect(rootScope.filteredItems.length)
-      .toBe(1);
-    // console.debug(rootScope.filteredItems);
-  });
 });

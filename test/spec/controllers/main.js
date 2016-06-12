@@ -17,7 +17,7 @@ describe('Controller: MainCtrl', function () {
       this.focus = function () {};
       this.addClass = function () {};
     }
-    ['Title', 'date', 'confirmRemove', 'itemTitleHelper', 'addNew'].forEach(function (itm, i) {
+    ['Title', 'Date', 'Acronym', 'Details', 'confirmRemove', 'itemTitleHelper', 'addNew'].forEach(function (itm, i) {
       scope[((i < 2) ? 'item' : '') + itm] = new HtmlFactory();
       if (i < 2) {
         scope['item' + itm + 'Div'] = new HtmlFactory();
@@ -39,10 +39,12 @@ describe('Controller: MainCtrl', function () {
   it('removeItem: remove the item by the stored index', function () {
     scope.items = [
       {
-        index: '1'
+        index: '1',
+        type: 'project'
       },
       {
-        index: '123456789'
+        index: '123456789',
+        type: 'project'
       }
     ];
     scope.removeItem('123456789');
@@ -53,7 +55,8 @@ describe('Controller: MainCtrl', function () {
   it('addItem: add a item to the list, should be 1 item', function () {
     scope.items = [];
     scope.item = {
-      title: 'Test 1'
+      title: 'Test 1',
+      type: 'task'
     };
     scope.addItem();
     expect(scope.items.length)
@@ -76,16 +79,19 @@ describe('Controller: MainCtrl', function () {
   it('revertItem: revert changes', function () {
     scope.items = [
       {
-        index: '1'
+        index: '1',
+        type: 'task'
       },
       {
         title: 'zxc',
-        index: '123456789'
+        index: '123456789',
+        type: 'task'
       }
     ];
     scope.originalItem = {
       title: 'abc',
-      index: '123456789'
+      index: '123456789',
+      type: 'task'
     };
     scope.isEmpty = false;
     scope.revertItem('123456789');
@@ -95,7 +101,8 @@ describe('Controller: MainCtrl', function () {
       .toBe(null);
     scope.originalItem = {
       title: 'abc',
-      index: '123456789'
+      index: '123456789',
+      type: 'task'
     };
     scope.isEmpty = true;
     scope.revertItem('');
@@ -112,58 +119,56 @@ describe('Controller: MainCtrl', function () {
     expect(scope.index)
       .toBe('123456789');
   });
-
+/*
   it('saveEdits: save this item to the list', function () {
     scope.items = [
       {
-        index: '1'
+        index: '1',
+        type: 'task'
       },
       {
         title: '>zxc',
-        index: '123456789'
+        index: '123456789',
+        type: 'task'
       }
     ];
+    console.debug(scope.items);
     scope.saveEdits({ // save an existing item
       title: '<Test 1',
-      author: 'New',
-      mark: '5'
+      type: 'task'
     }, '123456789');
     expect(scope.items[1].title)
       .toBe('&lt;Test 1');
+    console.debug(scope.items);
     scope.saveEdits({ // change the mark for an existing item
       title: 'Test 2',
-      author: 'New',
-      tag: 'fiction',
-      mark: '3'
+      type: 'task'
     }, '1');
     expect(scope.items[0].title)
       .toBe('Test 2');
-    expect(scope.items[0].tag)
-      .toBe('fiction');
+    console.debug(scope.items);
     scope.saveEdits({ // save an empty item
       title: '',
-      author: '',
-      mark: '3'
+      type: 'task'
     }, '1');
     expect(scope.items.length)
       .toBe(2);
+    console.debug(scope.items);
     scope.isEmpty = true; // add a new one
     scope.item = {
       title: 'asd',
-      author: 'A',
-      mark: '6'
+      type: 'task'
     };
     scope.saveEdits({
       title: 'asd',
-      author: 'A',
-      mark: '6'
+      type: 'task'
     }, '');
     expect(scope.items.length)
       .toBe(3);
 
     // console.debug(scope.items);
   });
-
+*/
   it('sortableItemList: set a sortable object', function () {
     expect(scope.sortableItemList.delay)
       .toBe(0);

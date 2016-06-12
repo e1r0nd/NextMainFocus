@@ -175,7 +175,6 @@ angular.module('nextmainfocusApp')
         $scope.item = item;
         $scope.originalItem = angular.extend({}, item);
         $scope.index = index;
-        console.debug($scope.item);
       } catch (e) {
         if (window.console && window.console.error) {
           console.error(e, e.stack);
