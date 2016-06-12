@@ -135,6 +135,7 @@ angular.module('nextmainfocusApp')
 
         $scope.isEmpty = true; // drop the dirty flag for the Modal dialog
         $scope.item.type = (project) ? 'project' : 'task';
+        $scope.item.parentID = $rootScope.projectItems[0].index;
         $scope.itemTitleHelper.html($filter('translate')('ITEM_NOT_EMPTY'));
         ['Title', 'Date', 'Acronym', 'Details'].forEach(function (itm) { // clear inputs
           $('#item' + itm + 'Div')
@@ -174,6 +175,7 @@ angular.module('nextmainfocusApp')
         $scope.item = item;
         $scope.originalItem = angular.extend({}, item);
         $scope.index = index;
+        console.debug($scope.item);
       } catch (e) {
         if (window.console && window.console.error) {
           console.error(e, e.stack);
@@ -184,40 +186,12 @@ angular.module('nextmainfocusApp')
     $scope.saveEdits = function (item, index) {
       //save all chages or add the new created item
       try {
-        var theSameTitle = function (title, index) { // don't add items with the same title
-            var i,
-              itemIndex = searchIndex(index);
-
-            try {
-              if (!title) {
-                return;
-              }
-              for (i in $scope.items) {
-                if ($scope.items.hasOwnProperty(i)) {
-                  if ($scope.items[i].title &&
-                    (($scope.items[i].title.toLowerCase() === title.toLowerCase() && $scope.isEmpty) ||
-                      ($scope.items[i].title.toLowerCase() === title.toLowerCase() && itemIndex !== i))) {
-                    return true;
-                  }
-                }
-              }
-              return false;
-            } catch (e) {
-              if (window.console && window.console.error) {
-                console.error(e, e.stack);
-              }
-            }
-          },
-          isTheSameTitle = theSameTitle(item.title, index);
-
         $scope.isError = false;
         // check for empty values
         ['Title'].forEach(function (itm) {
-          if ((!item[itm.toLowerCase()] || isTheSameTitle) && !$scope.isError) {
+          if ((!item[itm.toLowerCase()]) && !$scope.isError) {
             if (!item.title) {
               $scope.itemTitleHelper.html($filter('translate')('ITEM_NOT_EMPTY'));
-            } else if (isTheSameTitle) {
-              $scope.itemTitleHelper.html($filter('translate')('ITEM_EXISTS'));
             }
 
             $scope['item' + itm].focus();
@@ -229,6 +203,9 @@ angular.module('nextmainfocusApp')
         if (!$scope.isError) {
           $scope.addNew.modal('hide');
           item.index = Date.now();
+          if ('task' === item.type) {
+            item.acronym = $scope.items[searchIndex(item.parentID)].acronym;
+          }
           if ($scope.items[searchIndex(index)] && ($scope.items[searchIndex(index)].type !== item.type)) {
             item.order = String($filter('filter')($scope.items, {
                 type: 'task'
@@ -290,9 +267,9 @@ angular.module('nextmainfocusApp')
           title: 'Project A',
           date: '2016-06-12',
           index: '0001',
-          order: '2',
+          order: '0',
           type: 'project',
-          parentID: '',
+          parentID: '0001',
           acronym: 'PRA',
           details: ''
         }, {
@@ -301,7 +278,7 @@ angular.module('nextmainfocusApp')
           index: '0002',
           order: '1',
           type: 'project',
-          parentID: '',
+          parentID: '0002',
           acronym: 'PRB',
           details: ''
         }, {
@@ -317,36 +294,36 @@ angular.module('nextmainfocusApp')
           title: 'Task 2',
           date: '',
           index: '0004',
-          order: '1',
+          order: '3',
           type: 'task',
-          parent: '0001',
+          parentID: '0001',
           acronym: 'PRA',
           details: 'Lorem epsilum est dollar set amet?'
         }, {
           title: 'Task A',
           date: '',
           index: '0005',
-          order: '2',
+          order: '4',
           type: 'task',
-          parent: '0001',
+          parentID: '0001',
           acronym: 'PRA',
           details: ''
         }, {
           title: 'Point 1',
           date: '',
           index: '0006',
-          order: '0',
+          order: '5',
           type: 'task',
-          parent: '0002',
+          parentID: '0002',
           acronym: 'PRB',
           details: 'This is the best one'
         }, {
           title: 'Point 2',
           date: '',
           index: '0005',
-          order: '1',
+          order: '6',
           type: 'task',
-          parent: '0002',
+          parentID: '0002',
           acronym: 'PRB',
           details: 'The cat-item'
         }];

@@ -20,7 +20,7 @@
     </div>
   </li>
 </ul>
-<ul class="well" ng-if="filters && != 'focus' && !filteredItems.length">
+<ul class="well" ng-if="filters && filters != 'focus' && !filteredItems.length">
   <p class="list-itm-elem" ng-show="!filteredItems.length" translate>ITEMS_EMPTY</p>
 </ul>
 <ul class="well" ng-sortable="sortableItemList" ng-if="filters && filters != 'focus' && filteredItems.length">
@@ -56,19 +56,19 @@
   </div>
   <div class="btn-group-sm hidden-sm hidden-xs">
     <div class="btn-link-wrapper">
-      <span class="btn btn-success btn-fab btn-link-item" ng-click="newItem()" data-toggle="modal" data-target="#addNew">
+      <span class="btn btn-success btn-fab btn-link-item" ng-click="newItem(true)" data-toggle="modal" data-target="#addNew">
         <span class="add-btn-mini"><i class="material-icons">create_new_folder</i></span>
       </span>
       <div class="tooltip left tooltip-link tooltip-link-item" role="tooltip">
-        <div class="tooltip-inner">Add new item</div>
+        <div class="tooltip-inner">Add new project</div>
       </div>
     </div>
     <div class="btn-link-wrapper">
-      <span class="btn btn-info btn-fab btn-link-article" ng-click="newItem(true)" data-toggle="modal" data-target="#addNew">
+      <span class="btn btn-info btn-fab btn-link-article" ng-click="newItem()" data-toggle="modal" data-target="#addNew">
         <span class="add-btn-mini"><i class="material-icons">description</i></span>
       </span>
       <div class="tooltip left tooltip-link tooltip-link-article" role="tooltip">
-        <div class="tooltip-inner">Add new article</div>
+        <div class="tooltip-inner">Add new task</div>
       </div>
     </div>
   </div>
@@ -83,33 +83,20 @@
             <input class="form-control" id="itemTitle" type="text" ng-model="item.title" ng-trim="true" ng-maxlength="128" maxlength="128" required>
             <p class="help-block" id="itemTitleHelper" translate>ITEM_NOT_EMPTY</p>
           </div>
-          <div id="itemAuthorDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}">
-            <label class="control-label" for="itemAuthor" ng-show="item.type=='item'" translate>ITEM_AUTHOR</label>
-            <label class="control-label" for="itemAuthor" ng-show="item.type=='article'" translate>ITEM_URL</label>
-            <input class="form-control" id="itemAuthor" type="text" ng-model="item.author" ng-trim="true" ng-maxlength="255" maxlength="255" required>
+          <div id="itemAcronymDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}" ng-show="item.type=='project'">
+            <label class="control-label" for="itemAcronym" translate>ITEM_ACRONYM</label>
+            <input class="form-control" id="itemAcronym" type="text" ng-model="item.acronym" ng-trim="true" ng-maxlength="128" maxlength="128" required>
             <p class="help-block" translate>ITEM_NOT_EMPTY</p>
           </div>
-          <div id="itemTagDiv" class="form-group label-floating">
-            <label class="control-label" for="itemTag" translate>ITEM_TAG</label>
-            <select id="itemTag" class="form-control" ng-model="item.tag" ng-trim="true">
-              <option value="" selected></option>
-              <option value="fiction" translate>TAG_FICTION</option>
-              <option value="education" translate>TAG_EDUCATION</option>
-              <option value="entertainment" translate>TAG_ENTERTAINMENT</option>
+          <div id="itemParentIdDiv" class="form-group label-floating" ng-show="item.type=='task'">
+            <label class="control-label" for="itemParentId" translate>ITEM_PARENTID</label>
+            <select id="itemParentId" class="form-control" ng-model="item.parentID" ng-trim="true">
+              <option ng-select="item.parentID==option.index" ng-repeat="option in projectItems" value="{{option.index}}">{{option.title}}</option>
+              <script>
+
+
+              </script>
             </select>
-          </div>
-          <div id="itemMarkDiv" class="form-group label-floating">
-            <label class="control-label" for="itemMark" translate>ITEM_MARK</label>
-            <select id="itemMark" class="form-control" ng-model="item.mark" ng-trim="true" required>
-              <option value="0" selected translate>ITEM_READING_NOW</option>
-              <option value="1" translate>ITEM_1_STAR</option>
-              <option value="2" translate>ITEM_2_STARS</option>
-              <option value="3" translate>ITEM_3_STARS</option>
-              <option value="4" translate>ITEM_FAVORITE</option>
-              <option value="5" translate>ITEM_WANT_TO_READ</option>
-              <option value="6" translate>ITEM_DONT_WANT_TO_READ</option>
-            </select>
-            <p class="help-block" translate>ITEM_NOT_EMPTY</p>
           </div>
           <div id="itemDateDiv" class="form-group label-floating" ng-class="{'is-empty': isEmpty}">
             <label class="control-label" for="itemDate" translate>ITEM_DATE</label>
@@ -121,10 +108,10 @@
       <div class="modal-footer">
         <div class="togglebutton togglebutton-block">
           <label>
-            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': item.type!='item'}">Item</span>
-            <input ng-model="item.type" type="checkbox" ng-true-value="'article'" ng-false-value="'item'">
+            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': item.type!='project'}">Project</span>
+            <input ng-model="item.type" type="checkbox" ng-true-value="'task'" ng-false-value="'project'">
             <span id="itemToggler" class="toggle"></span>
-            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': item.type!='article'}">Article</span>
+            <span class="btn togglebutton-btn hidden-xs" ng-class="{'btn-primary': item.type!='task'}">Task</span>
           </label>
         </div>
         <button type="button" class="btn btn-default" ng-click="revertItem(item.index)" data-dismiss="modal" translate>ITEM_CLOSE</button>

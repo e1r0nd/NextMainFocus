@@ -86,11 +86,19 @@ angular.module('nextmainfocusApp')
           }
           return false;
         });
+
         if ('focus' !== $scope.filters) { //reorder items for the Wish-list
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'order');
         } else {
           $rootScope.filteredItems = $filter('orderBy')($rootScope.filteredItems, 'date');
         }
+
+        $rootScope.projectItems = $filter('filter')($scope.items, function (item) {
+          if ('project' === item.type) {
+            return true;
+          }
+          return false;
+        });
       } catch (e) {
         if (window.console && window.console.error) {
           console.error(e, e.stack);
