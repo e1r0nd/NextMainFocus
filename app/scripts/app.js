@@ -50,7 +50,6 @@ angular
       'ITEMS_EMPTY': 'Nothing to show in this list',
       'ITEM_NOT_EMPTY': 'Should be not empty',
       'CONFIRM_QUESTION': 'Are you shure?',
-      'EXTERNAL_LINK': 'read now...',
       'SEARCH_FOR': 'Search for...',
     });
 
@@ -69,7 +68,6 @@ angular
       'ITEMS_EMPTY': 'Нечего показывать в этом списке',
       'ITEM_NOT_EMPTY': 'Должно быть не пустым',
       'CONFIRM_QUESTION': 'Вы уверены?',
-      'EXTERNAL_LINK': 'прочитать...',
       'SEARCH_FOR': 'Найти...',
     });
 
