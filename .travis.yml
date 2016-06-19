@@ -1,10 +1,12 @@
-sudo: false
 language: node_js
 node_js:
-  - '5.4.1'
+  - 4.2.3
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: 5.1.1
 before_script:
-  - 'npm install -g grunt-cli grunt'
-  - 'npm install phantomjs phantomjs-prebuilt'
-  - 'npm install karma jasmine-core jasmine karma-jasmine'
-  - 'npm install karma-phantomjs-launcher grunt-karma'
-  - 'bower install'
+  - npm install -g bower grunt-cli
+  - gem install sass
+  - bower install
+services: mongodb
