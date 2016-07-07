@@ -10,4 +10,7 @@ angular.module('nextmainfocusApp', ['nextmainfocusApp.auth', 'nextmainfocusApp.a
     });
 
     $locationProvider.html5Mode(true);
+    $('document').ready(()=> {
+      $.material.init();
+    });
   });

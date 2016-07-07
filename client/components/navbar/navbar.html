@@ -4,8 +4,13 @@
   $(function() {
     $('[data-toggle="tooltip"]').tooltip()
   })
-</script>
 
+</script>
+<input class="form-control" id="data" type="text">
+<script>
+  $('#data').bootstrapMaterialDatePicker();
+
+</script>
 <div class="list-itm-elem cursor" ng-click="editBook(book, book.index)" data-toggle="modal" data-target="#addNew">ADD NEW</div>
 
 <div class="modal fade" id="addNew" role="dialog" data-keyboard="false">
@@ -40,8 +45,8 @@
                 <span class="visible-xs-inline-block"><i class="material-icons">speaker_notes</i></span>
                 <span class="hidden-xs" translate>BOOK_QUOTE</span>
               </button>
-              <button type="button" class="btn btn-default" ng-click="revertBook(book.index)" data-dismiss="modal" translate>BOOK_CLOSE</button>
-              <button type="button" class="btn btn-primary" ng-click="saveEdits(book, book.index)" translate>BOOK_SAVE_CHANGES</button>
+              <a type="button" class="btn btn-default" ng-click="revertBook(book.index)" data-dismiss="modal" translate>BOOK_CLOSE</a>
+              <a type="button" class="btn btn-primary" ng-click="saveEdits(book, book.index)" translate>BOOK_SAVE_CHANGES</a>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -52,7 +57,7 @@
   </div>
   <!-- /.modal -->
 </div>
-<span class="btn btn-default btn-fab" ng-click="removeBookDialog(book.index)" data-toggle="modal" data-target="#confirmRemove">close</span>
+<span class="btn btn-default btn-fab" ng-click="removeBookDialog(book.index)" data-toggle="modal" data-target="#confirmRemove"><i class="material-icons">close</i></span>
 <div class="modal fade" id="confirmRemove" role="dialog" data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -62,8 +67,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" translate>BOOK_CLOSE</button>
-        <button type="button" class="btn btn-primary" ng-click="removeBook(index)" translate>BOOK_REMOVE</button>
+        <a type="button" class="btn btn-default" data-dismiss="modal" translate>BOOK_CLOSE</a>
+        <a type="button" class="btn btn-primary" ng-click="removeBook(index)" translate>BOOK_REMOVE</a>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -71,48 +76,50 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-  <div class="dropdown">
-    <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown trigger
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dLabel">
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-    </ul>
-  </div>
-  <br><br><hr>
-  <!-- examples END //-->
+<div class="dropdown">
+  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown trigger
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
+<br>
+<br>
+<hr>
+<!-- examples END //-->
 
-  <div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
-    <div class="container">
-      <div class="navbar-header">
-        <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="/" class="navbar-brand">nextmainfocus</a>
-      </div>
-      <div uib-collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav">
-          <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-          </li>
-          <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
-        </ul>
+<div class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">nextmainfocus</a>
+    </div>
+    <div uib-collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="item in nav.menu" ng-class="{active: nav.isActive(item.link)}">
+          <a ng-href="{{item.link}}">{{item.title}}</a>
+        </li>
+        <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
+      </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup">Sign up</a></li>
-          <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
-          <li ng-show="nav.isLoggedIn()">
-            <p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p>
-          </li>
-          <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-          <li ng-show="nav.isLoggedIn()"><a href="/logout">Logout</a></li>
-        </ul>
-      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup">Sign up</a></li>
+        <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
+        <li ng-show="nav.isLoggedIn()">
+          <p class="navbar-text">Hello {{ nav.getCurrentUser().name }}</p>
+        </li>
+        <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="nav.isLoggedIn()"><a href="/logout">Logout</a></li>
+      </ul>
     </div>
   </div>
+</div>
