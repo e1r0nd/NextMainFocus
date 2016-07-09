@@ -2,7 +2,7 @@
 
 angular.module('nextmainfocusApp', ['nextmainfocusApp.auth', 'nextmainfocusApp.admin',
     'nextmainfocusApp.constants', 'ngCookies', 'ngResource', 'ngSanitize', 'ngRoute',
-    'btford.socket-io', 'validation.match'
+    'btford.socket-io', 'validation.match', 'pascalprecht.translate'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider.otherwise({
@@ -13,4 +13,14 @@ angular.module('nextmainfocusApp', ['nextmainfocusApp.auth', 'nextmainfocusApp.a
     $('document').ready(()=> {
       $.material.init();
     });
-  });
+  })
+  .config(['$translateProvider', function($translateProvider) {
+    'use strict';
+    $translateProvider.useStaticFilesLoader({
+      prefix: '/i18n/locale-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy('escape'); // sanitize|escape
+    $translateProvider.useCookieStorage();
+  }]);

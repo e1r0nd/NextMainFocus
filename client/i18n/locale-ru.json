@@ -1,0 +1,11 @@
+{
+  "NEXT_MAIN_FOCUS": "Главный фокус",
+  "USER_NAME": "Имя пользователя",
+  "USER_PASSWORD": "Пароль",
+  "USER_EMAIL": "Е-мейл",
+  "USER_LOGIN": "Войти",
+  "USER_REGISTER": "Присоединиться",
+  "USER_OR": "или",
+  "USER_UNAUTH_HEADER": "Не пойдет так!",
+  "USER_UNAUTH_TXT": "Нельзя этого делать вот просто так."
+}
