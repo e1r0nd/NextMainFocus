@@ -15,7 +15,6 @@ angular.module('nextmainfocusApp', ['nextmainfocusApp.auth', 'nextmainfocusApp.a
     });
   })
   .config(['$translateProvider', function($translateProvider) {
-    'use strict';
     $translateProvider.useStaticFilesLoader({
       prefix: '/i18n/locale-',
       suffix: '.json'

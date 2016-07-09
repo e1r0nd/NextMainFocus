@@ -26,6 +26,9 @@ module.exports = function(config) {
       'client/bower_components/bootstrap-material-design/dist/js/ripples.js',
       'client/bower_components/momentjs/moment.js',
       'client/bower_components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js',
+      'client/bower_components/angular-translate/angular-translate.js',
+      'client/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
+      'client/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',
