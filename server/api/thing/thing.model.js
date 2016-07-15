@@ -3,8 +3,11 @@
 import mongoose from 'mongoose';
 
 var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
+  type: String,
+  title: String,
+  parent: String,
+  acronym: String,
+  order: Number,
   active: Boolean
 });
 

@@ -25,7 +25,7 @@
     addThing() {
       if (this.newThing) {
         this.$http.post('/api/things', {
-          name: this.newThing
+          title: this.newThing
         });
         this.newThing = '';
       }
