@@ -1,3 +1,5 @@
+I want to see only the current task for each project on the Home Page.
+
 **List of projects.**
 * Projects are displayed in a list ordered by index.
 * The order of projects cannot be changed.
@@ -8,12 +10,10 @@
 * Tasks are displayed in a list ordered by order, grouped by project.
 * The list can be filtered by the phrase.
 * The order of projects cannot be changed in this view.
-* The tasks cannot be moved between projects.
+* The tasks could be moved to another project.
 
 **Properties.**
 * The project/task can be added, inputs: title, state.
 * The project/task can be deleted.
 * Projects/Tasks can be an unlimited number.
 * The tasks' order could be changed.
-
-I want to see only the current task for each project on the Home Page.
