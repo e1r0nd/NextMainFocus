@@ -1,4 +1,5 @@
 I want to see only the current task for each project on the Home Page.
+Home Page could be configured.
 
 **List of projects.**
 * Projects are displayed in a list ordered by index.
