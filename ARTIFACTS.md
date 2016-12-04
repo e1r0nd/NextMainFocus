@@ -1,4 +1,4 @@
-I want to see only the current task for each project on the Home Page.
+I want to see only the current task for each project on the Home Page.<br>
 Home Page could be configured.
 
 **List of projects.**
