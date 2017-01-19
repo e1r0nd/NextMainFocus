@@ -1,9 +1,3 @@
-Keep tactics in the list and be focused on the main problems right now.
-
-**PROJECT IS ON HOLD**
-
-**Right now I'm focused on PersonalBookShelf : https://github.com/e1r0nd/PersonalBookShelf**
-
 # Description
 This is a fast and convenient one-page-app for keeping the list of the projects, all projects have tasks, on the Home page only the current tasks from each project are displayed. Implemented responsive design so it works under all devices (PC, tablet, mobile). Designed with a modern fancy style Google Material Design. Login with credentials so the synchronization is supported.
 
