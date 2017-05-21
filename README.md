@@ -1,3 +1,5 @@
+**PROJECT IS ON HOLD**
+
 # Description
 This is a fast and convenient one-page-app for keeping the list of the projects, all projects have tasks, on the Home page only the current tasks from each project are displayed. Implemented responsive design so it works under all devices (PC, tablet, mobile). Designed with a modern fancy style Google Material Design. Login with credentials so the synchronization is supported.
 
